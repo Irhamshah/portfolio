@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Data Pipeline Automation - Irhamshah Kamarudin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link::before {
+            content: '←';
+        }
+
+        .project-header {
+            padding: 2rem 0 3rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--text-secondary);
+        }
+
+        .project-content {
+            padding-bottom: 4rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul,
+        .section-content ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-category h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+        }
+
+        .code-snippet {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-snippet code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                /* This is new - shows the hamburger button */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <a href="projects.html" class="back-link">Back to Projects</a>
+
+        <div class="project-header">
+            <span class="project-badge">Enterprise Project</span>
+            <h1 class="project-title">Enterprise Data Pipeline Automation</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Data Engineer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Company</span>
+                    <span class="meta-value">Accenture Singapore</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">14 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Project</span>
+                    <span class="meta-value">Multi-million dollar Government project</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-image">
+            <img src="./images/data-diagram.png" alt="Data Pipeline Diagram" style="width: 100%; height: auto;">
+        </div>
+
+        <div class="project-content">
+            <div class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="section-content">
+                    <p>
+                        Served as a Data Engineer contractor at Accenture Singapore, leading development efforts
+                        on a large-scale data analytics infrastructure project. Focused on automation, pipeline
+                        development, and team leadership to deliver enterprise-grade data solutions for a major client.
+                    </p>
+                    <p>
+                        The project involved building automated ETL pipelines, creating data warehousing solutions,
+                        and developing custom transformation jobs to process massive datasets. As the main developer
+                        for Wave 1, I was responsible for architecting solutions that would scale across multiple
+                        project phases.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Project Context</h2>
+                <div class="section-content">
+                    <p>
+                        Part of a multi-wave, multi-million dollar enterprise transformation project. The client
+                        needed to modernize their data infrastructure, moving from legacy systems to a cloud-based
+                        analytics platform capable of handling diverse data sources and complex business requirements.
+                    </p>
+                    <p>
+                        Led a development team within the larger Data Analytics organization, coordinating with
+                        stakeholders, architects, and business analysts to deliver production-ready data pipelines
+                        on schedule.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Key Achievements</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">3/3</span>
+                        <span class="stat-label">Waves Delivered as Main Developer</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Pipeline Automation Rate</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Glue Jobs Created</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Automation Solutions</h2>
+                <div class="section-content">
+                    <p>
+                        Developed comprehensive automation systems to eliminate manual processes and reduce
+                        deployment time from days to minutes:
+                    </p>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        AWS Glue Job Automation
+                    </h3>
+                    <ul>
+                        <li>
+                            <strong>Automated Creation:</strong> Built Python scripts that read RDS metadata
+                            and automatically generate AWS Glue jobs, CloudFormation JSON, and Python ETL scripts
+                        </li>
+                        <li>
+                            <strong>Template System:</strong> Created reusable templates that adapt to different
+                            data sources and transformation requirements
+                        </li>
+                        <li>
+                            <strong>S3 Deployment:</strong> Automated storage of generated scripts in S3 buckets
+                            with proper versioning and organization
+                        </li>
+                        <li>
+                            <strong>Configuration Management:</strong> Metadata-driven approach allows new pipelines
+                            to be configured without code changes
+                        </li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Redshift Schema Automation
+                    </h3>
+                    <ul>
+                        <li>
+                            <strong>SQL Generation:</strong> Developed tools to automatically generate Redshift
+                            table creation scripts from RDS metadata stored in JSON format
+                        </li>
+                        <li>
+                            <strong>Data Type Mapping:</strong> Intelligent mapping between source database types
+                            and optimal Redshift column types
+                        </li>
+                        <li>
+                            <strong>Index Optimization:</strong> Automatic generation of distribution and sort keys
+                            based on query patterns
+                        </li>
+                        <li>
+                            <strong>Schema Validation:</strong> Built-in checks to ensure generated schemas meet
+                            data warehouse best practices
+                        </li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>
+                            Result: Reduced pipeline deployment time from 2-3 days of manual work to under 1 hour
+                            of automated execution, while eliminating human error.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Pipeline Development</h2>
+                <div class="section-content">
+                    <p>
+                        As team lead, directed the development of complex ETL pipelines handling diverse data sources:
+                    </p>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Data Extraction
+                    </h3>
+                    <ul>
+                        <li>Connected to multiple source systems including relational databases, APIs, and flat files
+                        </li>
+                        <li>Implemented incremental loading strategies to minimize data transfer and processing time
+                        </li>
+                        <li>Built error handling and retry mechanisms for resilient data extraction</li>
+                        <li>Created monitoring and alerting for failed extractions</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Data Transformation
+                    </h3>
+                    <ul>
+                        <li>Designed and implemented data cleaning processes to handle inconsistent source data</li>
+                        <li>Built custom Glue jobs for complex business logic and metric calculations</li>
+                        <li>Developed reusable transformation functions for common data quality issues</li>
+                        <li>Optimized transformations for performance on large datasets (millions of rows)</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Data Loading
+                    </h3>
+                    <ul>
+                        <li>Implemented efficient bulk loading into AWS Redshift data warehouse</li>
+                        <li>Created dimension and fact tables following data warehouse design principles</li>
+                        <li>Built slowly changing dimension (SCD) logic to track historical changes</li>
+                        <li>Optimized table structures with appropriate distribution and sort keys</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Custom Metrics Development</h2>
+                <div class="section-content">
+                    <p>
+                        Worked directly with business stakeholders to understand requirements and develop custom
+                        Glue jobs that calculate client-specific metrics:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Business Logic Translation:</strong> Converted complex business requirements
+                            into efficient SQL and Python transformations
+                        </li>
+                        <li>
+                            <strong>Aggregation Jobs:</strong> Created jobs that pre-compute aggregated metrics
+                            for faster downstream reporting
+                        </li>
+                        <li>
+                            <strong>Data Quality Metrics:</strong> Built jobs to track data completeness, accuracy,
+                            and timeliness
+                        </li>
+                        <li>
+                            <strong>Performance Tuning:</strong> Optimized metric calculations to run efficiently
+                            on large datasets
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Orchestration with Step Functions</h2>
+                <div class="section-content">
+                    <p>
+                        Developed AWS Step Functions to orchestrate complex data workflows with proper error
+                        handling and dependencies:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Pipeline Orchestration:</strong> Created state machines that run Glue jobs
+                            in the correct sequence with proper dependencies
+                        </li>
+                        <li>
+                            <strong>Error Handling:</strong> Implemented retry logic, error branching, and
+                            notification systems for pipeline failures
+                        </li>
+                        <li>
+                            <strong>Parallel Processing:</strong> Designed workflows that process independent
+                            data streams in parallel for faster completion
+                        </li>
+                        <li>
+                            <strong>Monitoring Integration:</strong> Integrated with CloudWatch for real-time
+                            pipeline monitoring and alerting
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Architecture</h2>
+                <div class="section-content">
+                    <p>The solution leveraged a modern AWS data stack:</p>
+                    <ul>
+                        <li><strong>AWS Glue:</strong> Serverless ETL engine for data processing at scale</li>
+                        <li><strong>AWS Redshift:</strong> Enterprise data warehouse for analytics workloads</li>
+                        <li><strong>AWS Step Functions:</strong> Workflow orchestration and error handling</li>
+                        <li><strong>Amazon S3:</strong> Data lake storage for raw and processed data</li>
+                        <li><strong>AWS RDS:</strong> Metadata storage and source system integration</li>
+                        <li><strong>CloudFormation:</strong> Infrastructure as code for repeatable deployments</li>
+                        <li><strong>CloudWatch:</strong> Monitoring, logging, and alerting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h4>AWS Services</h4>
+                        <ul class="tech-list">
+                            <li>AWS Glue</li>
+                            <li>AWS Redshift</li>
+                            <li>Step Functions</li>
+                            <li>S3</li>
+                            <li>RDS</li>
+                            <li>CloudFormation</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Programming</h4>
+                        <ul class="tech-list">
+                            <li>Python</li>
+                            <li>PySpark</li>
+                            <li>SQL</li>
+                            <li>JSON</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Data & Tools</h4>
+                        <ul class="tech-list">
+                            <li>Pandas</li>
+                            <li>Boto3</li>
+                            <li>Git</li>
+                            <li>CI/CD Pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Leadership & Collaboration</h2>
+                <div class="section-content">
+                    <p>
+                        As team lead for the Data Analytics development efforts:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Team Management:</strong> Led a team of developers, coordinating tasks and
+                            ensuring code quality through reviews
+                        </li>
+                        <li>
+                            <strong>Stakeholder Communication:</strong> Regular updates to project managers and
+                            business stakeholders on progress and blockers
+                        </li>
+                        <li>
+                            <strong>Technical Documentation:</strong> Created comprehensive documentation for
+                            pipeline architecture, automation scripts, and operational procedures
+                        </li>
+                        <li>
+                            <strong>Knowledge Transfer:</strong> Mentored team members on AWS services, ETL
+                            best practices, and automation techniques
+                        </li>
+                        <li>
+                            <strong>Cross-Team Coordination:</strong> Worked with infrastructure, security, and
+                            business intelligence teams to ensure smooth delivery
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Challenges & Solutions</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Challenge:</strong> Manual creation of 50+ similar Glue jobs was time-consuming,
+                        error-prone, and difficult to maintain consistently.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Built metadata-driven automation that generates jobs from
+                        configuration. One change to the template immediately applies to all generated jobs,
+                        and new pipelines can be added by updating metadata without writing code.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> Complex dependencies between data pipelines made orchestration
+                        difficult, with frequent failures due to timing issues.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Implemented Step Functions with explicit dependency management,
+                        retry logic, and parallel processing where possible. Added comprehensive error handling
+                        and alerting so issues could be resolved quickly.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> Client requirements for custom metrics were complex and
+                        frequently changed during development.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Created a flexible framework for metric calculation that could
+                        accommodate changes without major refactoring. Worked closely with business analysts to
+                        clarify requirements early and validate outputs regularly.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Impact & Results</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Successfully delivered 3 waves (out of 3) as main developer, establishing foundation for
+                            future waves</li>
+                        <li>Automation reduced pipeline deployment time by 95% (days to hours)</li>
+                        <li>Zero production incidents related to deployed pipelines during Wave 1</li>
+                        <li>Automation framework adopted for subsequent project waves</li>
+                        <li>Processed millions of records daily with 99.9% pipeline reliability</li>
+                        <li>Enabled client to make data-driven decisions with fresh, accurate data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Learnings</h2>
+                <div class="section-content">
+                    <p>
+                        This project reinforced the value of automation in enterprise environments. Time spent
+                        building robust automation tools pays dividends as the project scales—what would take
+                        weeks of manual work now takes minutes.
+                    </p>
+                    <p>
+                        Working at enterprise scale taught me the importance of monitoring, logging, and
+                        error handling. In production systems processing business-critical data, pipelines must
+                        be resilient and observable. The time invested in comprehensive error handling and
+                        alerting prevented countless issues.
+                    </p>
+                    <p>
+                        Leading a team on a multi-million dollar project showed me that communication is as
+                        important as technical skills. Clear documentation, regular stakeholder updates, and
+                        proactive problem-solving kept the project on track despite complexity and changing
+                        requirements.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Project Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 1: Architecture & Planning</div>
+                        <div class="timeline-description">
+                            Worked with data analysts to design scalable data pipeline architecture. Created
+                            automation framework and established development standards.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 2: Automation Development</div>
+                        <div class="timeline-description">
+                            Built core automation tools for Glue job generation and Redshift schema creation.
+                            Developed reusable templates and tested with pilot pipelines.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 3: Pipeline Implementation</div>
+                        <div class="timeline-description">
+                            Led team to build ETL pipelines for Wave 1 to 3 data sources. Implemented custom
+                            transformation logic and metric calculations.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 4: Testing & Deployment</div>
+                        <div class="timeline-description">
+                            Comprehensive testing of pipelines and orchestration. Deployed to production with
+                            monitoring and successfully delivered all 3 waves.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

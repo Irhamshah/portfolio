@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0 6rem;
+        }
+
+        .hero-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        /* Section */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* Projects */
+        .project {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-radius: 4px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.7;
+        }
+
+        .project-link::after {
+            content: ' →';
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .experience-header {
+            margin-bottom: 0.75rem;
+        }
+
+        .experience-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .experience-company {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-period {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .experience-description ul {
+            margin-top: 0.75rem;
+            padding-left: 1.25rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* About / Story */
+        .story-content {
+            max-width: 700px;
+        }
+
+        .story-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .story-highlight {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .story-highlight p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-content {
+            max-width: 600px;
+        }
+
+        .contact-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 2rem 0 4rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+            }
+
+            .experience-item {
+                padding-left: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                /* This is new - shows the hamburger button */
+            }
+        }
+
+        /* Smooth animations */
+        @media (prefers-reduced-motion: no-preference) {
+
+            .hero,
+            .project,
+            .experience-item,
+            .skill-category {
+                animation: fadeIn 0.6s ease;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="./projects.html">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Building technology that's accessible and simple for everyone</h1>
+            <p class="hero-description">
+                Developer focused on creating intuitive mobile and web applications,
+                with a passion for assistive technology and meaningful user experiences.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View my work</a>
+                <a href="#contact" class="btn btn-secondary">Get in touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-badge">Featured</span>
+                    <h3 class="project-title">AAC Messenger</h3>
+                </div>
+                <p class="project-description">
+                    A mobile application designed to foster communication between non-verbal special needs individuals
+                    and their caregivers. AAC Messenger is built with accessibility at its core, featuring customizable
+                    communication boards, text-to-speech functionality, and an intuitive interface simplifying
+                    interaction for users with diverse needs.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Expo</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Websockets</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://apps.apple.com/us/app/aac-messenger/id6747913083" class="project-link"
+                        target="_blank">View on App Store</a>
+                    <a href="https://assistivetech.co" class="project-link" target="_blank">Learn More</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3 class="project-title">RTE Technologies Website</h3>
+                </div>
+                <p class="project-description">
+                    Designed and Built a website for RTE Technologies, a Start Up in Singapore specializing in
+                    sustainable and green technology. Website was created to help them showcase their products and
+                    services to potential clients and investors.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://rte-technologies.vercel.app" class="project-link" target="_blank">View website</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3 class="project-title">Additional Projects</h3>
+                </div>
+                <p class="project-description">
+                    Have a couple more projects, both mobile and web applications that I have built. Feel free to check
+                    out.
+                </p>
+                <div class="project-links">
+                    <a href="./projects.html" class="project-link">View more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Co-Founder & Developer</h3>
+                    <p class="experience-company">Assistive Technologies</p>
+                    <p class="experience-period">December 2024 – Present</p>
+                </div>
+                <div class="experience-description">
+                    <p>
+                        Building a startup focused on creating accessible technology solutions alongside my brother.
+                        Handling full-stack development, product design, and user research to create products that
+                        make technology simpler and more inclusive.
+                    </p>
+                    <ul>
+                        <li>Developed mobile and web applications from concept to deployment</li>
+                        <li>Conducted user research to understand accessibility needs</li>
+                        <li>Managed cloud infrastructure and deployment pipelines</li>
+                        <li>Iterated on product features based on user feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Data Engineering Intern</h3>
+                    <p class="experience-company">Accenture Singapore</p>
+                    <p class="experience-period">March 2024 – June 2025</p>
+                </div>
+                <div class="experience-description">
+                    <p>
+                        Developed and maintained data pipelines for processing and analyzing large-scale datasets.
+                        Worked with cloud infrastructure to optimize data workflows and improve processing efficiency.
+                    </p>
+                    <ul>
+                        <li>Built ETL pipelines using AWS Glue and Step Functions</li>
+                        <li>Designed and optimized data models in Redshift</li>
+                        <li>Automated data quality checks with Python and Pandas</li>
+                        <li>Collaborated with cross-functional teams to deliver data solutions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Web Developer</h3>
+                    <p class="experience-company">National Gallery Singapore</p>
+                    <p class="experience-period">February 2023 – October 2023</p>
+                </div>
+                <div class="experience-description">
+                    <p>
+                        Developed an interactive companion website for the National Gallery Singapore's "See Me See You"
+                        exhibition, collaborating with creative agency Do Not Design.
+                    </p>
+                    <ul>
+                        <li>Developed a front-end-only microsite for the National Gallery's "See Me See You" exhibition
+                        </li>
+                        <li>Worked with Do Not Design to create the site using ThreeJS, HTML, CSS and JavaScript</li>
+                        <li>Used 3-D object rendering for an interactive experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Mobile Development</h3>
+                    <ul class="skill-list">
+                        <li>React Native</li>
+                        <li>Swift</li>
+                        <li>Flutter</li>
+                        <li>Expo</li>
+                        <li>iOS & Android</li>
+                        <li>Mobile UI/UX</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <ul class="skill-list">
+                        <li>React</li>
+                        <li>TypeScript</li>
+                        <li>JavaScript</li>
+                        <li>HTML & CSS</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <ul class="skill-list">
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>PostgreSQL</li>
+                        <li>REST APIs</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Data</h3>
+                    <ul class="skill-list">
+                        <li>Firebase & Firestore</li>
+                        <li>AWS (Glue, Step Functions, Redshift)</li>
+                        <li>Python & Pandas</li>
+                        <li>ETL Pipelines</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+
+            <div class="story-content">
+                <p>
+                    I'm a developer with a passion for creating technology that's genuinely helpful and accessible
+                    to everyone. My journey in tech started with curiosity about how things work and evolved into
+                    a mission to build products that make people's lives easier.
+                </p>
+
+                <p>
+                    During my time as a Data Engineering intern, I learned the importance of building scalable,
+                    reliable systems. Working with large datasets and cloud infrastructure taught me to think
+                    about performance, efficiency, and the broader impact of technical decisions.
+                </p>
+
+                <div class="story-highlight">
+                    <p>
+                        "The best technology is invisible—it just works, making complex things feel simple and
+                        empowering people to do what they need to do."
+                    </p>
+                </div>
+
+                <p>
+                    Currently, I co-founded a startup with my brother, Assistive Technologies, focused on building
+                    technological solutions for the disabled.
+                    We're creating tools that bridge the gap between technology and the people who need it most.
+                    This journey has taught me that the best solutions come from truly understanding user needs and
+                    iterating based on real feedback.
+                </p>
+
+                <p>
+                    I believe in building with purpose—whether it's a mobile app that helps someone navigate their
+                    day independently or a data pipeline that surfaces insights that drive better decisions.
+                    Every project is an opportunity to make technology more human.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+
+            <div class="contact-content">
+                <p class="contact-description">
+                    I'm always interested in new opportunities, collaborations, or just chatting about
+                    technology and accessibility. Feel free to reach out!
+                </p>
+                <div class="contact-methods">
+                    <a href="mailto:irhamshah321@gmail.com" class="contact-link">Email</a>
+                    <a href="https://www.linkedin.com/in/irhamshah-kamarudin-80ab85247/" class="contact-link"
+                        target="_blank">LinkedIn</a>
+                    <a href="https://github.com/Irhamshah" class="contact-link" target="_blank">GitHub</a>
+                    <a href="https://docs.google.com/document/d/1ploXqMOo59dE6M9wR68OYbi_qHSJCjIAnPvrazrjEHA/edit?usp=sharing"
+                        class="contact-link" target="_blank">Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

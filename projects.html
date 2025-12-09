@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Irhamshah Kamarudin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Header */
+        .page-header {
+            padding: 3rem 0 4rem;
+        }
+
+        .page-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.65rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                /* This is new - shows the hamburger button */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">All Projects</h1>
+            <p class="page-description">
+                A collection of mobile and web applications focused on accessibility,
+                user experience, and solving real problems.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <a href="project-assistive-tech.html" class="project-card">
+                <div class="project-image">
+                    <img src="./images/banner-aacmessenger.png" alt="Assistive Tech Mobile App"
+                        style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-badge">Featured</span>
+                        <h2 class="project-title">Assistive Tech Mobile App</h2>
+                    </div>
+                    <p class="project-description">
+                        A mobile application designed to improve accessibility and independence
+                        for users with disabilities through real-time assistance and customizable interfaces.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Expo</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Firestore</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project-rte-technologies.html" class="project-card">
+                <div class="project-image">
+                    <img src="./images/rte-banner.png" alt="RTE Technologies Site"
+                        style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h2 class="project-title">RTE Technologies Site</h2>
+                    </div>
+                    <p class="project-description">
+                        Built a website for RTE Technologies, a Start Up in Singapore specializing in
+                        sustainable and green technology.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project-data-engineering.html" class="project-card">
+                <div class="project-image">
+                    <img src="./images/data-diagram.png" alt="Data Warehousing & Analytics"
+                        style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h2 class="project-title">Data Warehousing & Analytics</h2>
+                    </div>
+                    <p class="project-description">
+                        Developed a data warehousing solution and analytics platform to streamline
+                        data processing and provide actionable insights for a large scale Government Entity.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">AWS Redshift</span>
+                        <span class="tech-tag">AWS Glue</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project-national-gallery.html" class="project-card">
+                <div class="project-image">
+                    <img src="./images/smsy_art_1.jpg" alt="See Me See You Exhibition Microsite"
+                        style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-badge">Cultural Institution</span>
+                        <h2 class="project-title">See Me See You Exhibition Microsite</h2>
+                    </div>
+                    <p class="project-description">
+                        Developed an interactive 3D microsite for the National Gallery Singapore's "See Me See You"
+                        exhibition, collaborating with creative agency Do Not Design.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">ThreeJS</span>
+                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">GLSL Shaders</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

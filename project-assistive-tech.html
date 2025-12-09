@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistive Tech Mobile App - Irhamshah Kamarudin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link::before {
+            content: '←';
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0 3rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        /* Project Image */
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Project Content */
+        .project-content {
+            padding-bottom: 4rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul,
+        .section-content ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-category h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-items: center;
+        }
+
+        .gallery-item {
+            width: 100%;
+            max-width: 250px;
+            aspect-ratio: 9 / 19.5;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <a href="projects.html" class="back-link">Back to Projects</a>
+
+        <div class="project-header">
+            <span class="project-badge">Featured Project</span>
+            <h1 class="project-title">AAC Messenger</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Full-Stack Developer & Co-Founder</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">9 months (on going)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Platform</span>
+                    <span class="meta-value">iOS & Android</span>
+                </div>
+            </div>
+
+            <div class="project-links">
+                <a href="https://apps.apple.com/us/app/aac-messenger/id6747913083" class="btn btn-primary"
+                    target="_blank">View Live App</a>
+                <a href="https://assistivetech.co" class="btn btn-secondary" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <div class="project-image">
+            <img src="./images/banner-aacmessenger.png" alt="AAC Messenger App Screenshot"
+                style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+        </div>
+
+        <div class="project-content">
+            <div class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="section-content">
+                    <p>
+                        AAC Messenger is a mobile application designed to enhance communication and accessibility
+                        for non-verbal special needs individuals. By integrating and digitizing existing solutions into
+                        a
+                        single, user-friendly platform, the app aims to empower individuals to communicate more
+                        effectively with their caregivers.
+                    </p>
+                    <p>
+                        Developed alongside my brother as part of our startup journey, this project represents our
+                        commitment to creating technology that truly makes a difference. Through extensive user research
+                        and iterative design, we've created an app that prioritizes simplicity without sacrificing
+                        functionality.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Problem</h2>
+                <div class="section-content">
+                    <p>
+                        Many existing accessibility apps are either too complex, lacking key features, not designed
+                        with actual user feedback or simply too expensive. Users often face:
+                    </p>
+                    <ul>
+                        <li>Steep learning curves that create barriers instead of removing them</li>
+                        <li>Limited customization options that don't adapt to individual requirements</li>
+                        <li>High cost, leading to many not being able to access them</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Solution</h2>
+                <div class="section-content">
+                    <p> We designed an assistive communication app that provides a fast, simple, and accessible way for
+                        non-verbal users to express themselves: </p>
+                    <ul>
+                        <li><strong>Grid-Based Communication Board:</strong> A clean, customizable grid of cards that
+                            users can tap to speak words or phrases aloud.</li>
+                        <li><strong>Folder Navigation System:</strong> Cards can function as folders, allowing users to
+                            navigate into categories (e.g., Food, Emotions, Actions) for more specific vocabulary.</li>
+                        <li><strong>Text-to-Speech Output:</strong> Every card instantly speaks its content, enabling
+                            quick and natural communication.</li>
+                        <li><strong>Personalized Vocabulary:</strong> Users can store cards and folders created by the
+                            admin or tailor them based on their own needs.</li>
+                        <li><strong>Real-Time Messaging:</strong> Built-in chat system that
+                            lets caregivers and users communicate seamlessly.</li>
+                        <li><strong>Accessible Design:</strong> Large touch targets, colorful cards, and a minimal
+                            interface optimized for users with autism and other communication challenges.</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>
+                            "Our goal was simple: make every interaction feel natural and effortless,
+                            removing barriers instead of adding complexity."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Key Features</h2>
+                <div class="section-content">
+                    <ol>
+                        <li>
+                            <strong>Folder-Based Navigation</strong> – Cards can act as folders, allowing users to
+                            navigate deeper
+                            into categories like Food, Places, Actions, or Emotions.
+                        </li>
+                        <li>
+                            <strong>Customizable Vocabulary</strong> – Users can access cards created by the admin or
+                            tailored for
+                            their needs, making the app adaptable to different communication styles.
+                        </li>
+                        <li>
+                            <strong>Built-in Chat System</strong> – Real-time messaging
+                            allows users
+                            and caregivers to communicate seamlessly within the app.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Implementation</h2>
+                <div class="section-content">
+                    <p>
+                        Built with React Native and Expo for cross-platform performance, the app uses a modern, scalable
+                        backend architecture to support real-time communication and a smooth user experience:
+                    </p>
+                    <ul>
+                        <li><strong>Firebase Authentication</strong> for secure and seamless user sign-in</li>
+                        <li><strong>WebSockets + DynamoDB</strong> for fast, reliable real-time
+                            messaging</li>
+                        <li><strong>Expo Speech & Accessibility APIs</strong> for text-to-speech and an easy-to-use
+                            interface</li>
+                        <li><strong>Local Caching</strong> for quick loading of cards, folders, and recent messages</li>
+                        <li><strong>Lightweight Architecture</strong> optimized for responsiveness and
+                            accessibility-focused interactions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h4>Frontend</h4>
+                        <ul class="tech-list">
+                            <li>React Native</li>
+                            <li>Expo</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>Backend</h4>
+                        <ul class="tech-list">
+                            <li>Firebase Authentication</li>
+                            <li>AWS API Gateway</li>
+                            <li>AWS Lambda</li>
+                            <li>AWS DynamoDB</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>Tools & APIs</h4>
+                        <ul class="tech-list">
+                            <li>React Navigation</li>
+                            <li>Expo Speech (Text-to-Speech)</li>
+                            <li>AsyncStorage (Local Caching)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Challenges & Learnings</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Challenge:</strong> Designing an interface that is simple enough for non-verbal users,
+                        yet
+                        flexible enough to handle folders, categories, and real-time communication. Traditional mobile
+                        UI
+                        patterns didn’t work well for users with autism or limited motor control.
+                    </p>
+
+                    <p>
+                        <strong>Solution:</strong> I redesigned the grid multiple times—adjusting card sizes, spacing,
+                        colors, and navigation flow based on how my younger brother interacted with it. I also
+                        simplified
+                        touch interactions, added clearer visual hierarchy, and refined the folder system to minimize
+                        cognitive load.
+                    </p>
+
+                    <p>
+                        <strong>Learning:</strong> Accessibility isn’t about adding features—it’s about removing
+                        friction.
+                        Every iteration taught me how differently people communicate, and how thoughtful UI decisions
+                        can
+                        dramatically improve ease of use for someone who relies on the app every day.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Impact</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Over 50 active users in beta testing phase</li>
+                        <li>Company funded by Government Social Enterprise Grant</li>
+                        <li>Positive feedback from caregivers and special needs communities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Screenshots</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="./images/child_ui.jpg" alt="App Screenshot 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/parent_ui_1.jpg" alt="App Screenshot 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/parent_ui_2.jpg" alt="App Screenshot 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Next Steps</h2>
+                <div class="section-content">
+                    <p>
+                        We're continuing to improve the app based on user feedback and expanding features:
+                    </p>
+                    <ul>
+                        <li>Integration with smart home devices</li>
+                        <li>Enhanced AI capabilities for context-aware assistance</li>
+                        <li>Caregiver dashboard for family members and support networks</li>
+                        <li>Community features for users to share tips and support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTE Technologies Website - Irhamshah Kamarudin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link::before {
+            content: '←';
+        }
+
+        .project-header {
+            padding: 2rem 0 3rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--text-secondary);
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding-bottom: 4rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul,
+        .section-content ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-category h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: var(--card-bg);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                /* This is new - shows the hamburger button */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <a href="projects.html" class="back-link">Back to Projects</a>
+
+        <div class="project-header">
+            <h1 class="project-title">RTE Technologies Website</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Web Designer & Developer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">4 weeks</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">RTE Technologies (Singapore)</span>
+                </div>
+            </div>
+
+            <div class="project-links">
+                <a href="https://rte-technologies.vercel.app" class="btn btn-primary" target="_blank">View Live
+                    Website</a>
+            </div>
+        </div>
+
+        <div class="project-image">
+            <img src="./images/rte-banner.png" alt="RTE Technologies Website">
+        </div>
+
+        <div class="project-content">
+            <div class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="section-content">
+                    <p>
+                        Designed and built a professional website for RTE Technologies, a Singapore-based startup
+                        specializing in sustainable and green technology solutions. The website serves as their
+                        primary digital presence to showcase products, services, and company values to potential
+                        clients and investors.
+                    </p>
+                    <p>
+                        As a startup entering the competitive green technology sector, RTE Technologies needed
+                        a website that would establish credibility, clearly communicate their mission, and
+                        effectively present their innovative solutions to stakeholders.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Challenge</h2>
+                <div class="section-content">
+                    <p>
+                        RTE Technologies faced several challenges as a new player in the sustainable technology space:
+                    </p>
+                    <ul>
+                        <li>No existing digital presence to attract clients or investors</li>
+                        <li>Need to establish credibility and professionalism in a crowded market</li>
+                        <li>Complex technical products that needed clear, accessible explanations</li>
+                        <li>Limited budget as a startup, requiring cost-effective solutions</li>
+                        <li>Timeline pressure to launch before key investor meetings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Solution</h2>
+                <div class="section-content">
+                    <p>
+                        Created a clean, professional website built with vanilla HTML, CSS, and JavaScript—keeping
+                        costs low while delivering a polished, high-performance result:
+                    </p>
+                    <ul>
+                        <li><strong>Clear Value Proposition:</strong> Homepage immediately communicates RTE's focus on
+                            sustainable technology</li>
+                        <li><strong>Product Showcase:</strong> Dedicated sections highlighting key products and services
+                            with clear descriptions</li>
+                        <li><strong>Investor-Focused Content:</strong> Information architecture designed to answer
+                            investor questions</li>
+                        <li><strong>Fast Loading:</strong> Lightweight vanilla JavaScript ensures quick load times on
+                            all connections</li>
+                        <li><strong>Mobile-Responsive:</strong> Fully responsive design works seamlessly on all devices
+                        </li>
+                        <li><strong>SEO Optimized:</strong> Proper meta tags and semantic HTML for search engine
+                            visibility</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>
+                            "Simple, effective web design doesn't require complex frameworks—sometimes vanilla code
+                            is the most elegant solution."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Design Approach</h2>
+                <div class="section-content">
+                    <p>
+                        The design emphasizes professionalism and sustainability while keeping the user experience
+                        straightforward and intuitive:
+                    </p>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Visual Identity
+                    </h3>
+                    <ul>
+                        <li>Clean, modern aesthetic that reflects innovation and sustainability</li>
+                        <li>Green color palette reinforcing the company's environmental focus</li>
+                        <li>Professional typography for credibility with corporate clients</li>
+                        <li>High-quality imagery showcasing technology and environmental themes</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Information Architecture
+                    </h3>
+                    <ul>
+                        <li><strong>Homepage:</strong> Overview of company mission and key differentiators</li>
+                        <li><strong>Products/Services:</strong> Detailed but accessible descriptions of offerings</li>
+                        <li><strong>About Us:</strong> Team, company story, and values</li>
+                        <li><strong>Contact:</strong> Easy ways for clients and investors to reach out</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        User Experience
+                    </h3>
+                    <ul>
+                        <li>Intuitive navigation with clear call-to-action buttons</li>
+                        <li>Smooth scroll animations for modern feel without being distracting</li>
+                        <li>Contact forms strategically placed for lead generation</li>
+                        <li>Fast page loads (under 2 seconds) for better user retention</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Implementation</h2>
+                <div class="section-content">
+                    <p>
+                        Built with core web technologies for maximum performance and minimal dependencies:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>HTML5:</strong> Semantic markup for accessibility and SEO, proper meta tags
+                            for social media sharing
+                        </li>
+                        <li>
+                            <strong>CSS3:</strong> Custom styling with CSS Grid and Flexbox for responsive layouts,
+                            CSS animations for smooth interactions
+                        </li>
+                        <li>
+                            <strong>Vanilla JavaScript:</strong> Interactive elements like form validation, smooth
+                            scrolling, and mobile menu—no framework bloat
+                        </li>
+                        <li>
+                            <strong>Vercel Deployment:</strong> Fast, reliable hosting with automatic SSL and global CDN
+                        </li>
+                        <li>
+                            <strong>Performance Optimization:</strong> Image optimization, minified CSS/JS, lazy loading
+                            for images below the fold
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Key Features</h2>
+                <div class="section-content">
+                    <ol>
+                        <li>
+                            <strong>Responsive Design</strong> – Seamlessly adapts to desktop, tablet, and mobile
+                            devices with carefully crafted breakpoints
+                        </li>
+                        <li>
+                            <strong>Contact Forms</strong> – Easy-to-use forms for inquiries with client-side
+                            validation for immediate feedback
+                        </li>
+                        <li>
+                            <strong>Product Gallery</strong> – Visual showcase of RTE's technology solutions with
+                            descriptive overlays
+                        </li>
+                        <li>
+                            <strong>Company Timeline</strong> – Visual storytelling of RTE's journey and milestones
+                        </li>
+                        <li>
+                            <strong>Fast Loading</strong> – Optimized assets and minimal dependencies ensure
+                            sub-2-second page loads
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h4>Frontend</h4>
+                        <ul class="tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript (Vanilla)</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Design</h4>
+                        <ul class="tech-list">
+                            <li>CSS Grid & Flexbox</li>
+                            <li>CSS Animations</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Deployment</h4>
+                        <ul class="tech-list">
+                            <li>Vercel</li>
+                            <li>Git Version Control</li>
+                            <li>CI/CD Pipeline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Design Process</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Discovery & Research:</strong> Met with RTE leadership to understand their vision,
+                        target audience, and business goals. Researched competitor websites in the green tech space
+                        to identify opportunities for differentiation.
+                    </p>
+                    <p>
+                        <strong>Wireframing & Design:</strong> Created low-fidelity wireframes to establish
+                        information hierarchy and user flow. Developed high-fidelity mockups incorporating RTE's
+                        brand colors and desired aesthetic.
+                    </p>
+                    <p>
+                        <strong>Development:</strong> Built the site with clean, semantic HTML and modular CSS for
+                        easy maintenance. Implemented interactive features with vanilla JavaScript, keeping the
+                        codebase lightweight and fast.
+                    </p>
+                    <p>
+                        <strong>Testing & Launch:</strong> Comprehensive testing across devices and browsers.
+                        Performance optimization to achieve fast load times. Deployed to Vercel for reliable,
+                        scalable hosting.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Challenges & Solutions</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Challenge:</strong> Communicating complex technical products in an accessible way
+                        without overwhelming visitors.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Used progressive disclosure—high-level benefits on initial view,
+                        with "Learn More" sections for technical details. Incorporated diagrams and visual aids to
+                        simplify complex concepts.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> Building a professional, feature-rich website on a tight startup
+                        budget.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Chose vanilla HTML/CSS/JS over React or other frameworks,
+                        eliminating build complexity and hosting requirements. Deployed on Vercel's free tier for
+                        excellent performance without costs.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> Creating smooth animations and interactions without JavaScript
+                        frameworks.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Leveraged CSS animations and transitions for most visual effects,
+                        using vanilla JavaScript only where necessary. Result: smooth interactions with minimal code.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Results & Impact</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Successfully launched before critical investor meetings</li>
+                        <li>Website used in pitch decks to demonstrate professional presence</li>
+                        <li>Average page load time under 1.5 seconds on 4G connections</li>
+                        <li>100% responsive across all tested devices and browsers</li>
+                        <li>Positive feedback from investors on company presentation</li>
+                        <li>Contact form submissions from potential clients within first week</li>
+                        <li>Lighthouse scores: 95+ Performance, 100 Accessibility, 100 Best Practices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Website Sections</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="./images/rte-banner.png" alt="Homepage Hero">
+                        <div class="gallery-caption">Homepage - Hero Section</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/aero-zero-hero.png" alt="Products Section">
+                        <div class="gallery-caption">Products & Services Showcase</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/aero-zero-details.png" alt="About Section">
+                        <div class="gallery-caption">Product Showcase</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Learnings</h2>
+                <div class="section-content">
+                    <p>
+                        This project reinforced that you don't always need complex frameworks to build effective
+                        websites. For a content-focused site like this, vanilla HTML/CSS/JS delivered excellent
+                        performance and maintainability without the overhead of React or Vue.
+                    </p>
+                    <p>
+                        Working with a startup client taught me the importance of understanding business constraints
+                        and priorities. The website needed to launch quickly and cost-effectively while still looking
+                        professional enough to impress investors—vanilla web technologies hit that sweet spot perfectly.
+                    </p>
+                    <p>
+                        I learned to balance aesthetic design with performance. Every animation and visual effect was
+                        evaluated for its impact on load time and user experience. The result was a site that looks
+                        modern and polished while loading incredibly fast.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

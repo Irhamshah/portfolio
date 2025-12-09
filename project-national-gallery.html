@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Gallery Singapore - See Me See You - Irhamshah Kamarudin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --accent: #2563eb;
+            --accent-light: #93c5fd;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link::before {
+            content: '←';
+        }
+
+        .project-header {
+            padding: 2rem 0 3rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--text-secondary);
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding-bottom: 4rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul,
+        .section-content ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-category h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: var(--card-bg);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        footer {
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                /* This is new - shows the hamburger button */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Irhamshah Kamarudin</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Irhamshah Kamarudin</div>
+            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <a href="projects.html" class="back-link">Back to Projects</a>
+
+        <div class="project-header">
+            <span class="project-badge">Cultural Institution</span>
+            <h1 class="project-title">See Me See You Exhibition Microsite</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Web Developer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">National Gallery Singapore</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Agency</span>
+                    <span class="meta-value">Do Not Design</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">Feb 2023 - Oct 2023</span>
+                </div>
+            </div>
+
+            <div class="project-links">
+                <a href="https://www.nationalgallery.sg/seemeseeyou/explore/" class="btn btn-primary"
+                    target="_blank">View Live Site (Might be unactive)</a>
+            </div>
+        </div>
+
+        <div class="project-image">
+            <img src="./images/smsy_website_gif.gif" alt="See Me See You Exhibition">
+        </div>
+
+        <div class="project-content">
+            <div class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="section-content">
+                    <p>
+                        Developed an interactive companion website for the National Gallery Singapore's "See Me See You"
+                        exhibition, collaborating with creative agency Do Not Design. The microsite serves as a digital
+                        companion to the physical exhibition, providing visitors with a rich online resource featuring
+                        a visual timeline of artworks and in-depth information about each piece.
+                    </p>
+                    <p>
+                        This project represents the intersection of art, technology, and digital storytelling—creating
+                        an accessible platform that enhances the gallery experience and makes the exhibition's narrative
+                        available to audiences beyond the physical space.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Project Context</h2>
+                <div class="section-content">
+                    <p>
+                        The National Gallery Singapore is Southeast Asia's premier art museum, housing the world's
+                        largest public collection of Singapore and Southeast Asian art. For their "See Me See You"
+                        exhibition, they wanted a digital experience that would:
+                    </p>
+                    <ul>
+                        <li>Complement the physical exhibition with an interactive online presence</li>
+                        <li>Engage younger, tech-savvy audiences with innovative web experiences</li>
+                        <li>Extend the exhibition's reach to international audiences unable to visit in person</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Challenge</h2>
+                <div class="section-content">
+                    <p>
+                        Creating an engaging digital companion for a physical art exhibition presented several unique
+                        challenges:
+                    </p>
+                    <ul>
+                        <li>Designing an intuitive timeline interface to showcase the exhibition's artworks
+                            chronologically</li>
+                        <li>Presenting detailed artwork information in an engaging, accessible way</li>
+                        <li>Creating smooth 3D visual elements and interactions without overwhelming the content</li>
+                        <li>Balancing visual richness with performance and load times</li>
+                        <li>Ensuring the experience worked seamlessly on both desktop and mobile devices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">The Solution</h2>
+                <div class="section-content">
+                    <p>
+                        Built an engaging, interactive companion website using Three.js for visual enhancements,
+                        creating a seamless digital experience:
+                    </p>
+                    <ul>
+                        <li><strong>Interactive Timeline:</strong> Visual timeline showcasing the exhibition's artworks
+                            chronologically, allowing users to explore the narrative flow of the exhibition</li>
+                        <li><strong>Detailed Artwork Pages:</strong> In-depth information for each art piece including
+                            artist backgrounds, historical context, themes, and curatorial insights</li>
+                        <li><strong>3D Visual Elements:</strong> Used Three.js to create engaging visual effects and
+                            transitions that enhance the browsing experience without distracting from content</li>
+                        <li><strong>Responsive Design:</strong> Optimized experience for desktop, tablet, and
+                            mobile devices with adaptive layouts</li>
+                        <li><strong>Performance Optimization:</strong> Fast loading times while maintaining rich
+                            visual presentation</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>
+                            "Digital companions should enrich understanding and appreciation of art, making complex
+                            narratives accessible to all."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Implementation</h2>
+                <div class="section-content">
+                    <p>
+                        As a front-end-only companion website, the project focused on creating an engaging,
+                        informative experience with thoughtful use of 3D enhancements:
+                    </p>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Artwork Information Pages
+                    </h3>
+                    <ul>
+                        <li>Detailed pages for each artwork with high-quality images</li>
+                        <li>Structured content including artist bios, historical context, and themes</li>
+                        <li>Clean typography and layout prioritizing readability</li>
+                        <li>Easy navigation between artworks and back to timeline</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Three.js Visual Enhancements
+                    </h3>
+                    <ul>
+                        <li>Subtle 3D effects and transitions adding visual interest without overwhelming content</li>
+                        <li>Performance-optimized rendering maintaining smooth interactions</li>
+                        <li>WebGL effects that degrade gracefully on older devices</li>
+                    </ul>
+
+                    <h3
+                        style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text-primary);">
+                        Performance & Accessibility
+                    </h3>
+                    <ul>
+                        <li>Fast initial load times with progressive enhancement</li>
+                        <li>Responsive images optimized for different screen sizes</li>
+                        <li>Semantic HTML structure for screen reader compatibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Key Features</h2>
+                <div class="section-content">
+                    <ol>
+                        <li>
+                            <strong>Interactive Timeline</strong> – Chronological visualization of exhibition artworks,
+                            allowing users to explore the narrative progression of the show
+                        </li>
+                        <li>
+                            <strong>Comprehensive Artwork Information</strong> – Detailed pages for each piece featuring
+                            artist backgrounds, historical context, themes, and curatorial insights
+                        </li>
+                        <li>
+                            <strong>Three.js Visual Enhancements</strong> – Subtle 3D effects and animations that add
+                            polish without distracting from the content
+                        </li>
+                        <li>
+                            <strong>Multi-Device Support</strong> – Fully responsive design working seamlessly
+                            on desktop, tablet, and mobile
+                        </li>
+                        <li>
+                            <strong>Fast, Accessible Experience</strong> – Quick loading times with semantic HTML
+                            and keyboard navigation support
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h4>3D & Graphics</h4>
+                        <ul class="tech-list">
+                            <li>Three.js</li>
+                            <li>WebGL</li>
+                            <li>GLSL Shaders</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Frontend</h4>
+                        <ul class="tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Tools & Workflow</h4>
+                        <ul class="tech-list">
+                            <li>Git Version Control</li>
+                            <li>Browser DevTools</li>
+                            <li>Performance Profiling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Collaboration with Do Not Design</h2>
+                <div class="section-content">
+                    <p>
+                        Working with Do Not Design, a creative agency, involved close collaboration throughout
+                        the development process:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Design Implementation:</strong> Translated creative vision into functional
+                            3D experiences, working iteratively with designers
+                        </li>
+                        <li>
+                            <strong>Technical Consultation:</strong> Advised on technical feasibility and
+                            performance implications of design choices
+                        </li>
+                        <li>
+                            <strong>Stakeholder Communication:</strong> Regular presentations to National Gallery
+                            stakeholders, incorporating feedback
+                        </li>
+                        <li>
+                            <strong>Quality Assurance:</strong> Rigorous testing across devices and browsers to
+                            ensure consistent experience
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Challenges & Solutions</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Challenge:</strong> Creating an engaging timeline interface that works well on both
+                        desktop and mobile devices with different interaction patterns.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Implemented adaptive timeline controls—horizontal scrolling with
+                        mouse drag on desktop, vertical scroll with touch gestures on mobile. Added clear visual
+                        indicators for navigation and maintained smooth performance across both interfaces.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> Balancing rich visual effects with fast load times and smooth
+                        performance, especially on mobile devices.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Used progressive enhancement approach—core content loads immediately
+                        with basic styling, then Three.js effects load in the background. Implemented efficient asset
+                        loading and optimized images. Result: sub-2-second initial load with smooth 60fps animations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Results & Impact</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Successfully launched alongside physical exhibition in October 2023</li>
+                        <li>Featured on National Gallery Singapore's main website as official exhibition companion</li>
+                        <li>Sub-5-second initial load time with smooth 60fps animations</li>
+                        <li>Site remained live through early 2024, serving as lasting digital archive of the exhibition
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Website Sections</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="./images/smsy_website_gif.gif" alt="Timeline Interface">
+                        <div class="gallery-caption">Home Page</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/smsy_art_1.jpg" alt="Artwork Detail Page">
+                        <div class="gallery-caption">Artwork Information & Details</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/smsy_art2.jpg" alt="Navigation">
+                        <div class="gallery-caption">Artwork Information & Details</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/smsy_timeline.jpg" alt="Mobile Experience">
+                        <div class="gallery-caption">Timeline</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Learnings</h2>
+                <div class="section-content">
+                    <p>
+                        This project taught me the importance of restraint when using advanced technologies like
+                        Three.js. The 3D effects served to enhance the content, not overshadow it. Knowing when
+                        to use subtle enhancements versus when to let content speak for itself is a crucial skill.
+                    </p>
+                    <p>
+                        Working with a cultural institution like the National Gallery showed me how to create
+                        digital experiences that serve educational and curatorial goals. The timeline and detailed
+                        artwork information needed to be both engaging and informative—technology was a tool to
+                        make cultural content more accessible, not an end in itself.
+                    </p>
+                    <p>
+                        Collaborating with Do Not Design taught me to bridge creative vision with technical
+                        implementation. Translating design concepts like "elegant transitions" and "engaging
+                        timeline" into concrete technical decisions—animation timings, scroll behaviors, information
+                        architecture—requires clear communication and iterative refinement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Designed and built with simplicity in mind © 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
