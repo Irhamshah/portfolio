@@ -4,484 +4,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio</title>
+    <meta name="description"
+        content="Irhamshah Kamarudin is a full-stack, React Native and data engineer building production-ready digital products.">
+    <title>Irhamshah Kamarudin — Developer & Product Builder</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="images/icon.png">
     <link
-        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #fafaf9;
-            --text-primary: #1a1a1a;
-            --text-secondary: #6b6b6b;
-            --accent: #2563eb;
-            --accent-light: #93c5fd;
-            --border: #e5e5e5;
-            --card-bg: #ffffff;
+            --bg: #09090b;
+            --surface: #111114;
+            --surface2: #17171b;
+            --text: #f5f5f5;
+            --muted: #a1a1aa;
+            --line: #27272a;
+            --accent: #7c3aed;
+            --accent2: #22d3ee;
+            --max: 1180px;
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
         }
 
         body {
-            font-family: 'Karla', sans-serif;
+            font-family: Inter, system-ui, sans-serif;
             background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            font-size: 17px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            width: min(var(--max), calc(100% - 40px));
+            margin: auto
         }
 
-        /* Navigation */
         nav {
-            padding: 2rem 0;
-            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(9, 9, 11, .78);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06)
         }
 
-        .nav-content {
+        .nav {
+            height: 72px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between
         }
 
         .logo {
-            font-family: 'Fraunces', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -.04em
         }
 
-        .nav-links {
+        .logo span {
+            color: #a78bfa
+        }
+
+        .navlinks {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            gap: 28px;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted)
         }
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-            font-size: 0.95rem;
+        .navlinks a:hover {
+            color: var(--text)
         }
 
-        .nav-links a:hover {
-            color: var(--text-primary);
+        .nav-cta {
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--text)
         }
 
-        /* Hero Section */
         .hero {
-            padding: 4rem 0 6rem;
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            padding: 80px 0 100px;
+            position: relative;
+            overflow: hidden
         }
 
-        .hero-title {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
+        .hero:before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            right: -260px;
+            top: -220px;
+            background: radial-gradient(circle, rgba(124, 58, 237, .22), transparent 65%);
+            pointer-events: none
         }
 
-        .hero-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 2rem;
+        .hero:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+            pointer-events: none
         }
 
-        .hero-cta {
-            display: inline-flex;
-            gap: 1rem;
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 940px
+        }
+
+        .eyebrow {
+            font: 500 12px "DM Mono", monospace;
+            color: #a78bfa;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 22px
+        }
+
+        h1 {
+            font-size: clamp(3.4rem, 8vw, 7.6rem);
+            line-height: .92;
+            letter-spacing: -.075em;
+            max-width: 1050px
+        }
+
+        .gradient {
+            background: linear-gradient(100deg, #fff 15%, #c4b5fd 52%, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero-copy {
+            max-width: 700px;
+            margin: 30px 0 34px;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.25rem)
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
-            font-family: 'Karla', sans-serif;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid var(--line);
+            transition: .2s
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: white;
+            background: #fff;
+            color: #09090b;
+            border-color: #fff
         }
 
         .btn-primary:hover {
-            background: #1d4ed8;
+            transform: translateY(-2px)
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+        .btn-ghost:hover {
+            background: var(--surface2);
+            border-color: #3f3f46
         }
 
-        .btn-secondary:hover {
-            border-color: var(--text-primary);
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 26px;
+            color: var(--muted);
+            font-size: 13px
         }
 
-        /* Section */
-        .section {
-            padding: 4rem 0;
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 14px #22c55e
         }
 
-        .section-title {
-            font-family: 'Fraunces', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+        section {
+            padding: 100px 0
         }
 
-        /* Projects */
-        .project {
-            margin-bottom: 4rem;
-            padding-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project:last-child {
-            border-bottom: none;
-        }
-
-        .project-header {
-            margin-bottom: 1rem;
-        }
-
-        .project-title {
-            font-family: 'Fraunces', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--accent-light);
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            padding: 0.4rem 0.75rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            border-radius: 4px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: opacity 0.2s ease;
-        }
-
-        .project-link:hover {
-            opacity: 0.7;
-        }
-
-        .project-link::after {
-            content: ' →';
-        }
-
-        /* Experience */
-        .experience-item {
-            margin-bottom: 3rem;
-            padding-left: 2rem;
-            border-left: 2px solid var(--border);
-        }
-
-        .experience-header {
-            margin-bottom: 0.75rem;
-        }
-
-        .experience-title {
-            font-family: 'Fraunces', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .experience-company {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .experience-period {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .experience-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .experience-description ul {
-            margin-top: 0.75rem;
-            padding-left: 1.25rem;
-        }
-
-        .experience-description li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category h3 {
-            font-family: 'Fraunces', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 0.4rem 0;
-            color: var(--text-secondary);
-        }
-
-        /* About / Story */
-        .story-content {
-            max-width: 700px;
-        }
-
-        .story-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .story-highlight {
-            background: var(--card-bg);
-            border-left: 3px solid var(--accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-        }
-
-        .story-highlight p {
-            margin-bottom: 0;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        /* Contact */
-        .contact-content {
-            max-width: 600px;
-        }
-
-        .contact-description {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .contact-methods {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            padding: 0.75rem 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .contact-link:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 0 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Mobile menu button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            padding: 0.5rem;
-        }
-
-        /* Mobile menu overlay */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg);
-            z-index: 1000;
-            padding: 2rem;
-        }
-
-        .mobile-menu.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-menu-header {
+        .section-head {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 34px
         }
 
-        .mobile-menu-close {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            padding: 0.5rem;
+        .kicker {
+            font: 500 12px "DM Mono", monospace;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            margin-bottom: 9px
         }
 
-        .mobile-nav-links {
-            list-style: none;
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            letter-spacing: -.055em;
+            line-height: 1
+        }
+
+        .section-note {
+            max-width: 430px;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .featured {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #141419, #0d0d10);
+            min-height: 440px
+        }
+
+        .featured-media {
+            min-height: 440px;
+            position: relative;
+            background: #0e0e12;
+            overflow: hidden
+        }
+
+        .featured-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: .88
+        }
+
+        .featured-media:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 45%, #0d0d10 100%)
+        }
+
+        .featured-content {
+            padding: 48px;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            justify-content: center
         }
 
-        .mobile-nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-family: 'Fraunces', serif;
-            font-weight: 600;
+        .pill {
+            display: inline-flex;
+            width: max-content;
+            padding: 6px 9px;
+            border: 1px solid #3f3f46;
+            border-radius: 999px;
+            color: #c4b5fd;
+            font: 500 11px "DM Mono", monospace;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 18px
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+        .featured h3 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            letter-spacing: -.06em;
+            line-height: 1.02;
+            margin-bottom: 16px
+        }
+
+        .featured p {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 22px
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 8px 0 28px
+        }
+
+        .metric {
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .025)
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 18px
+        }
+
+        .metric span {
+            display: block;
+            color: #71717a;
+            font-size: 11px;
+            margin-top: 3px
+        }
+
+        .arrow {
+            font-size: 18px
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--surface);
+            overflow: hidden;
+            transition: .25s
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #52525b
+        }
+
+        .card-img {
+            height: 250px;
+            background: #15151a;
+            overflow: hidden
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .4s
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.03)
+        }
+
+        .card-body {
+            padding: 24px
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 10px;
+            color: #71717a;
+            font: 500 11px "DM Mono", monospace;
+            text-transform: uppercase
+        }
+
+        .card h3 {
+            font-size: 24px;
+            letter-spacing: -.04em;
+            margin-bottom: 9px
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 18px
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: #1c1c21;
+            border: 1px solid #29292f;
+            color: #a1a1aa;
+            font: 400 11px "DM Mono", monospace
+        }
+
+        .wide {
+            grid-column: 1/-1;
+            display: grid;
+            grid-template-columns: .9fr 1.1fr
+        }
+
+        .wide .card-img {
+            height: 100%;
+            min-height: 300px
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px
+        }
+
+        .stack-card {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--surface)
+        }
+
+        .stack-card h3 {
+            font-size: 16px;
+            margin-bottom: 9px
+        }
+
+        .stack-card p {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .experience {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding: 26px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .experience:last-child {
+            border-bottom: 1px solid var(--line)
+        }
+
+        .role {
+            font-weight: 700
+        }
+
+        .company {
+            color: #a78bfa;
+            font-size: 13px;
+            margin-top: 4px
+        }
+
+        .date {
+            font: 400 11px "DM Mono", monospace;
+            color: #71717a;
+            margin-top: 8px
+        }
+
+        .experience ul {
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .experience li {
+            margin-bottom: 7px
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 70px
+        }
+
+        .about-lead {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            letter-spacing: -.04em;
+            line-height: 1.15
+        }
+
+        .about-copy {
+            color: var(--muted);
+            font-size: 15px
+        }
+
+        .about-copy p {
+            margin-bottom: 18px
+        }
+
+        .contact {
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 55px;
+            background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, .16), transparent 35%), var(--surface)
+        }
+
+        .contact h2 {
+            max-width: 650px
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin: 18px 0 26px;
+            max-width: 600px
+        }
+
+        footer {
+            padding: 35px 0;
+            color: #52525b;
+            border-top: 1px solid var(--line);
+            font: 400 11px "DM Mono", monospace
+        }
+
+        @media(max-width:800px) {
+            .navlinks {
+                display: none
             }
 
             .hero {
-                padding: 2rem 0 4rem;
+                padding: 70px 0
             }
 
-            .section {
-                padding: 3rem 0;
+            .featured,
+            .wide,
+            .about {
+                grid-template-columns: 1fr
             }
 
-            .skills-grid {
+            .featured-media {
+                min-height: 280px
+            }
+
+            .featured-content {
+                padding: 30px
+            }
+
+            .projects {
+                grid-template-columns: 1fr
+            }
+
+            .stack {
+                grid-template-columns: 1fr
+            }
+
+            .experience {
                 grid-template-columns: 1fr;
+                gap: 12px
             }
 
-            .hero-cta {
-                flex-direction: column;
-                align-items: flex-start;
+            .section-head {
+                display: block
             }
 
-            .contact-methods {
-                flex-direction: column;
-            }
-
-            .experience-item {
-                padding-left: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                /* This is new - shows the hamburger button */
-            }
-        }
-
-        /* Smooth animations */
-        @media (prefers-reduced-motion: no-preference) {
-
-            .hero,
-            .project,
-            .experience-item,
-            .skill-category {
-                animation: fadeIn 0.6s ease;
-            }
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+            .section-note {
+                margin-top: 15px
             }
         }
     </style>
@@ -489,302 +582,298 @@
 
 <body>
     <nav>
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">Irhamshah Kamarudin</div>
-                <ul class="nav-links">
-                    <li><a href="./projects.html">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-                <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
-            </div>
+        <div class="container nav"><a class="logo" href="#">Irham<span>.</span></a>
+            <div class="navlinks"><a href="#work">Work</a><a href="#experience">Experience</a><a
+                    href="#about">About</a><a href="#contact">Contact</a><a class="nav-cta" href="projects.html">All
+                    projects
+                    ↗</a></div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="logo">Irhamshah Kamarudin</div>
-            <button class="mobile-menu-close" aria-label="Close menu">×</button>
+    <header class="hero">
+        <div class="container hero-inner">
+            <div class="eyebrow">Full-stack developer · Mobile · Data</div>
+            <h1>I build <span class="gradient">real products</span>, not
+                just demos.</h1>
+            <p class="hero-copy">I'm Irham, a developer focused on React
+                Native, Expo, JavaScript and cloud systems. I turn ideas
+                into production-ready mobile and web products, backed by
+                scalable APIs and data infrastructure.</p>
+            <div class="actions"><a class="btn btn-primary" href="#work">See
+                    my work <span>↓</span></a><a class="btn btn-ghost" href="mailto:irhamshah321@gmail.com">Let's work
+                    together
+                    ↗</a></div>
+            <div class="availability"><span class="dot"></span> Available
+                for freelance & product work</div>
         </div>
-        <ul class="mobile-nav-links">
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
+    </header>
 
+    <main>
+        <section id="work">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="kicker">01 /
+                            Selected work</div>
+                        <h2>Built, shipped,
+                            used.</h2>
+                    </div>
+                    <p class="section-note">A mix of
+                        product engineering, mobile development and data
+                        systems. Each project solves a real problem for real
+                        users.</p>
+                </div>
 
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Building technology that's accessible and simple for everyone</h1>
-            <p class="hero-description">
-                Developer focused on creating intuitive mobile and web applications,
-                with a passion for assistive technology and meaningful user experiences.
-            </p>
-            <div class="hero-cta">
-                <a href="./projects.html" class="btn btn-primary">View my work</a>
-                <a href="#contact" class="btn btn-secondary">Get in touch</a>
+                <a class="featured" href="project-assistive-tech.html">
+                    <div class="featured-media"><img src="images/banner-aacmessenger.png" alt="AAC Messenger"></div>
+                    <div class="featured-content"><span class="pill">Featured · Product</span>
+                        <h3>AAC
+                            Messenger</h3>
+                        <p>A cross-platform AAC
+                            communication app built with React Native and
+                            Expo, designed around the needs of non-speaking
+                            children, parents and educators.</p>
+                        <div class="metrics">
+                            <div class="metric"><strong>iOS</strong><span>App
+                                    Store</span></div>
+                            <div class="metric"><strong>Android</strong><span>Play
+                                    Store</span></div>
+                            <div class="metric"><strong>Real-time</strong><span>Messaging</span></div>
+                        </div>
+                        <span class="btn btn-ghost">Read the case study
+                            <span class="arrow">→</span></span>
+                    </div>
+                </a>
+
+                <div class="projects" style="margin-top:18px">
+                    <a class="card" href="project-data-engineering.html">
+                        <div class="card-img"><img src="images/data-diagram.png"
+                                alt="AWS data engineering architecture"></div>
+                        <div class="card-body">
+                            <div class="card-meta"><span>Enterprise ·
+                                    Data</span><span>Case study
+                                    →</span></div>
+                            <h3>Data Pipeline
+                                Automation</h3>
+                            <p>Metadata-driven ETL
+                                automation for a multi-million-dollar
+                                government data platform. Reduced deployment
+                                work from 2–3 days to under an hour.</p>
+                            <div class="tags"><span class="tag">Python</span><span class="tag">AWS Glue</span><span
+                                    class="tag">Redshift</span><span class="tag">ETL</span></div>
+                        </div>
+                    </a>
+                    <a class="card" href="project-national-gallery.html">
+                        <div class="card-img"><img src="images/smsy_website_gif.gif"
+                                alt="National Gallery Singapore exhibition microsite"></div>
+                        <div class="card-body">
+                            <div class="card-meta"><span>Creative ·
+                                    Web</span><span>Case study
+                                    →</span></div>
+                            <h3>See Me See
+                                You</h3>
+                            <p>An interactive digital companion
+                                for National Gallery Singapore, combining
+                                visual storytelling, an artwork timeline and
+                                Three.js experiences.</p>
+                            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Three.js</span><span
+                                    class="tag">UX</span></div>
+                        </div>
+                    </a>
+                    <a class="card wide" href="project-rte-technologies.html">
+                        <div class="card-img"><img src="images/rte-banner.png" alt="RTE Technologies website"></div>
+                        <div class="card-body">
+                            <div class="card-meta"><span>Startup ·
+                                    Web</span><span>Case study
+                                    →</span></div>
+                            <h3>RTE
+                                Technologies</h3>
+                            <p>Designed and built a
+                                lightweight, responsive website for a
+                                Singapore green-tech startup, balancing
+                                credibility, speed and a tight launch
+                                timeline.</p>
+                            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
+                                    class="tag">JavaScript</span><span class="tag">Responsive</span></div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-badge">Featured</span>
-                    <h3 class="project-title">AAC Messenger</h3>
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="kicker">02 / What I do</div>
+                        <h2>From idea
+                            to shipped product.</h2>
+                    </div>
+                    <p class="section-note">I work across the product
+                        stack, which means fewer handoffs and a clearer path
+                        from prototype to production.</p>
                 </div>
-                <p class="project-description">
-                    A mobile application designed to foster communication between non-verbal special needs individuals
-                    and their caregivers. AAC Messenger is built with accessibility at its core, featuring customizable
-                    communication boards, text-to-speech functionality, and an intuitive interface simplifying
-                    interaction for users with diverse needs.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Expo</span>
-                    <span class="tech-tag">Firebase</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Websockets</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://apps.apple.com/us/app/aac-messenger/id6747913083" class="project-link"
-                        target="_blank">View on App Store</a>
-                    <a href="https://assistivetech.co" class="project-link" target="_blank">Learn More</a>
+                <div class="stack">
+                    <div class="stack-card">
+                        <h3>01 · Mobile
+                            products</h3>
+                        <p>React Native + Expo apps for iOS
+                            and Android, including navigation,
+                            authentication, APIs, notifications and
+                            production builds.</p>
+                    </div>
+                    <div class="stack-card">
+                        <h3>02 · Full-stack
+                            web</h3>
+                        <p>Responsive web applications and
+                            dashboards with React, JavaScript, Node.js, REST
+                            APIs and cloud services.</p>
+                    </div>
+                    <div class="stack-card">
+                        <h3>03 · Data
+                            engineering</h3>
+                        <p>Python ETL, AWS Glue,
+                            Redshift, SQL and metadata-driven pipelines for
+                            reliable, scalable data workflows.</p>
+                    </div>
+                    <div class="stack-card">
+                        <h3>04 · Cloud
+                            systems</h3>
+                        <p>AWS architecture across API
+                            Gateway, Lambda, DynamoDB, S3, Step Functions
+                            and deployment automation.</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project">
-                <div class="project-header">
-                    <h3 class="project-title">RTE Technologies Website</h3>
+        <section id="experience">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="kicker">03 /
+                            Experience</div>
+                        <h2>Engineering with
+                            ownership.</h2>
+                    </div>
+                    <p class="section-note">I've worked across startup
+                        product development and enterprise data
+                        engineering.</p>
                 </div>
-                <p class="project-description">
-                    Designed and Built a website for RTE Technologies, a Start Up in Singapore specializing in
-                    sustainable and green technology. Website was created to help them showcase their products and
-                    services to potential clients and investors.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS</span>
-                    <span class="tech-tag">JavaScript</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://rte-technologies.vercel.app" class="project-link" target="_blank">View website</a>
-                </div>
-            </div>
-
-            <div class="project">
-                <div class="project-header">
-                    <h3 class="project-title">Additional Projects</h3>
-                </div>
-                <p class="project-description">
-                    Have a couple more projects, both mobile and web applications that I have built. Feel free to check
-                    out.
-                </p>
-                <div class="project-links">
-                    <a href="./projects.html" class="project-link">View more</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Co-Founder & Developer</h3>
-                    <p class="experience-company">Assistive Technologies</p>
-                    <p class="experience-period">December 2024 – Present</p>
-                </div>
-                <div class="experience-description">
-                    <p>
-                        Building a startup focused on creating accessible technology solutions alongside my brother.
-                        Handling full-stack development, product design, and user research to create products that
-                        make technology simpler and more inclusive.
-                    </p>
+                <div class="experience">
+                    <div>
+                        <div class="role">Co-Founder &
+                            Software Engineer</div>
+                        <div class="company">Assistive Technologies</div>
+                        <div class="date">2024 —
+                            Present</div>
+                    </div>
                     <ul>
-                        <li>Developed mobile and web applications from concept to deployment</li>
-                        <li>Conducted user research to understand accessibility needs</li>
-                        <li>Managed cloud infrastructure and deployment pipelines</li>
-                        <li>Iterated on product features based on user feedback</li>
+                        <li>Main developer for
+                            AAC Messenger, taking the product from concept
+                            through mobile deployment and ongoing
+                            iteration.</li>
+                        <li>Built React Native/Expo
+                            client features and AWS-backed APIs for
+                            real-time communication.</li>
+                        <li>Work directly
+                            with parents and educators to turn product
+                            feedback into usable features.</li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Data Engineering Intern</h3>
-                    <p class="experience-company">Accenture Singapore</p>
-                    <p class="experience-period">March 2024 – June 2025</p>
-                </div>
-                <div class="experience-description">
-                    <p>
-                        Developed and maintained data pipelines for processing and analyzing large-scale datasets.
-                        Worked with cloud infrastructure to optimize data workflows and improve processing efficiency.
-                    </p>
+                <div class="experience">
+                    <div>
+                        <div class="role">Data
+                            Engineer</div>
+                        <div class="company">Accenture
+                            Singapore</div>
+                        <div class="date">2024 —
+                            2025</div>
+                    </div>
                     <ul>
-                        <li>Built ETL pipelines using AWS Glue and Step Functions</li>
-                        <li>Designed and optimized data models in Redshift</li>
-                        <li>Automated data quality checks with Python and Pandas</li>
-                        <li>Collaborated with cross-functional teams to deliver data solutions</li>
+                        <li>Main developer across
+                            all three waves of a multi-million-dollar
+                            government data analytics
+                            platform.</li>
+                        <li>Built Python/AWS Glue ETL
+                            automation, Redshift schema generation and
+                            metadata-driven deployment
+                            workflows.</li>
+                        <li>Led delivery of two waves as
+                            the sole developer after the previous full-time
+                            developer transitioned off the
+                            project.</li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Web Developer</h3>
-                    <p class="experience-company">National Gallery Singapore</p>
-                    <p class="experience-period">February 2023 – October 2023</p>
-                </div>
-                <div class="experience-description">
-                    <p>
-                        Developed an interactive companion website for the National Gallery Singapore's "See Me See You"
-                        exhibition, collaborating with creative agency Do Not Design.
-                    </p>
+                <div class="experience">
+                    <div>
+                        <div class="role">Web
+                            Developer</div>
+                        <div class="company">National
+                            Gallery Singapore · Do Not Design</div>
+                        <div class="date">2023</div>
+                    </div>
                     <ul>
-                        <li>Developed a front-end-only microsite for the National Gallery's "See Me See You" exhibition
-                        </li>
-                        <li>Worked with Do Not Design to create the site using ThreeJS, HTML, CSS and JavaScript</li>
-                        <li>Used 3-D object rendering for an interactive experience</li>
+                        <li>Built the
+                            front-end experience for the “See Me See You”
+                            exhibition microsite using JavaScript, HTML, CSS
+                            and Three.js.</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Mobile Development</h3>
-                    <ul class="skill-list">
-                        <li>React Native</li>
-                        <li>Swift</li>
-                        <li>Flutter</li>
-                        <li>Expo</li>
-                        <li>iOS & Android</li>
-                        <li>Mobile UI/UX</li>
-                    </ul>
+        <section id="about">
+            <div class="container about">
+                <div>
+                    <div class="kicker">04 / About</div>
+                    <div class="about-lead">I like building the parts of
+                        software that make the whole thing feel
+                        simple.</div>
                 </div>
-
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <ul class="skill-list">
-                        <li>React</li>
-                        <li>TypeScript</li>
-                        <li>JavaScript</li>
-                        <li>HTML & CSS</li>
-                        <li>Responsive Design</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <ul class="skill-list">
-                        <li>Node.js</li>
-                        <li>Express</li>
-                        <li>PostgreSQL</li>
-                        <li>REST APIs</li>
-                        <li>Python</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Cloud & Data</h3>
-                    <ul class="skill-list">
-                        <li>Firebase & Firestore</li>
-                        <li>AWS (Glue, Step Functions, Redshift)</li>
-                        <li>Python & Pandas</li>
-                        <li>ETL Pipelines</li>
-                        <li>MongoDB</li>
-                    </ul>
+                <div class="about-copy">
+                    <p>My
+                        background sits between product engineering and data
+                        engineering. I enjoy taking an ambiguous problem,
+                        figuring out what actually matters, then building
+                        the simplest system that can ship and
+                        scale.</p>
+                    <p>Today, that means building accessible
+                        technology at Assistive Technologies while
+                        continuing to work on mobile, web and data
+                        projects.</p>
+                    <p><strong style="color:#fff">Core
+                            stack:</strong> React Native · Expo · React ·
+                        JavaScript · Node.js · Python · SQL ·
+                        AWS</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About</h2>
-
-            <div class="story-content">
-                <p>
-                    I'm a developer with a passion for creating technology that's genuinely helpful and accessible
-                    to everyone. My journey in tech started with curiosity about how things work and evolved into
-                    a mission to build products that make people's lives easier.
-                </p>
-
-                <p>
-                    During my time as a Data Engineering intern, I learned the importance of building scalable,
-                    reliable systems. Working with large datasets and cloud infrastructure taught me to think
-                    about performance, efficiency, and the broader impact of technical decisions.
-                </p>
-
-                <div class="story-highlight">
-                    <p>
-                        "The best technology is invisible—it just works, making complex things feel simple and
-                        empowering people to do what they need to do."
-                    </p>
-                </div>
-
-                <p>
-                    Currently, I co-founded a startup with my brother, Assistive Technologies, focused on building
-                    technological solutions for the disabled.
-                    We're creating tools that bridge the gap between technology and the people who need it most.
-                    This journey has taught me that the best solutions come from truly understanding user needs and
-                    iterating based on real feedback.
-                </p>
-
-                <p>
-                    I believe in building with purpose—whether it's a mobile app that helps someone navigate their
-                    day independently or a data pipeline that surfaces insights that drive better decisions.
-                    Every project is an opportunity to make technology more human.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-
-            <div class="contact-content">
-                <p class="contact-description">
-                    I'm always interested in new opportunities, collaborations, or just chatting about
-                    technology and accessibility. Feel free to reach out!
-                </p>
-                <div class="contact-methods">
-                    <a href="mailto:irhamshah321@gmail.com" class="contact-link">Email</a>
-                    <a href="https://www.linkedin.com/in/irhamshah-kamarudin-80ab85247/" class="contact-link"
-                        target="_blank">LinkedIn</a>
-                    <a href="https://github.com/Irhamshah" class="contact-link" target="_blank">GitHub</a>
-                    <a href="https://docs.google.com/document/d/1ploXqMOo59dE6M9wR68OYbi_qHSJCjIAnPvrazrjEHA/edit?usp=sharing"
-                        class="contact-link" target="_blank">Resume</a>
+        <section id="contact">
+            <div class="container">
+                <div class="contact">
+                    <div class="kicker">05 /
+                        Contact</div>
+                    <h2>Have a product in
+                        mind?</h2>
+                    <p>Whether you need a mobile app,
+                        full-stack build or data workflow, I'm open to
+                        interesting problems and practical
+                        collaborations.</p>
+                    <div class="actions"><a class="btn btn-primary" href="mailto:irhamshah321@gmail.com">Email me
+                            ↗</a><a class="btn btn-ghost" target="_blank"
+                            href="https://www.linkedin.com/in/irhamshah-kamarudin-80ab85247/">LinkedIn
+                            ↗</a><a class="btn btn-ghost" target="_blank" href="https://github.com/Irhamshah">GitHub
+                            ↗</a></div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </main>
     <footer>
-        <div class="container">
-            <p>Designed and built with simplicity in mind © 2025</p>
-        </div>
+        <div class="container">© 2026 Irhamshah Kamarudin · Designed &
+            built from scratch.</div>
     </footer>
-
-    <script src="./script.js"></script>
 </body>
 
 </html>
