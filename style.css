@@ -27,6 +27,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,6 +47,7 @@ body {
   color: var(--ink);
   font: 400 1.125rem/1.6 var(--body);
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(255, 211, 78, .45);
 }
 
 img {
@@ -154,9 +157,11 @@ h3 {
   transition: transform .12s, box-shadow .12s;
 }
 
-.btn:hover {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 var(--ink);
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--ink);
+  }
 }
 
 .btn:active {
@@ -279,9 +284,11 @@ h3 {
   letter-spacing: 0;
 }
 
-.tile:hover {
-  transform: translateY(2px);
-  box-shadow: 0 3px 0 var(--ink);
+@media (hover: hover) {
+  .tile:hover {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 var(--ink);
+  }
 }
 
 .tile[aria-pressed="true"],
@@ -533,6 +540,7 @@ a:hover .read {
 
 .contact .mail {
   display: inline-block;
+  overflow-wrap: anywhere;
   font: 700 clamp(1.4rem, 3.4vw, 2.4rem) var(--display);
   letter-spacing: -0.02em;
   margin-bottom: 20px;
@@ -934,7 +942,7 @@ a:hover .read {
   background: linear-gradient(transparent 0 0, var(--cat) 0 100%);
 }
 
-/* ---------- small screens ---------- */
+/* ---------- tablets and phones ---------- */
 @media (max-width: 860px) {
   body {
     font-size: 1.0625rem;
@@ -944,6 +952,38 @@ a:hover .read {
     width: calc(100% - 36px);
   }
 
+  /* top bar: name, then one row of links with thumb-sized targets */
+  .top {
+    padding: 16px 0 4px;
+  }
+
+  .top .wrap {
+    display: block;
+  }
+
+  .name {
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  .top nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+    margin-top: 4px;
+    font-size: .9375rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .top nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 2px;
+    border-bottom: 4px solid transparent;
+    margin-bottom: -2px;
+  }
+
   .hero .wrap,
   .block-head,
   .feature-project .text,
@@ -951,8 +991,7 @@ a:hover .read {
   .project-row:nth-of-type(even),
   .skills,
   .job,
-  .about,
-  .case-layout {
+  .about {
     grid-template-columns: 1fr;
   }
 
@@ -961,19 +1000,234 @@ a:hover .read {
   }
 
   .hero {
-    padding-bottom: 56px;
+    padding: 28px 0 48px;
+  }
+
+  .hero .wrap {
+    gap: 28px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 9.2vw, 3rem);
+    margin-bottom: 18px;
+  }
+
+  .hero .intro {
+    font-size: 1.0625rem;
+    margin-bottom: 22px;
+  }
+
+  .hero .avail {
+    margin-top: 18px;
+  }
+
+  .actions .btn {
+    flex: 1 1 140px;
+    text-align: center;
+    padding: 14px 16px;
+  }
+
+  .bar {
+    min-height: 92px;
+  }
+
+  .bar p {
+    font-size: 1.2rem;
+  }
+
+  .sound {
+    padding: 8px 14px;
+    min-height: 44px;
+  }
+
+  .tile {
+    min-height: 104px;
   }
 
   .block {
-    padding: 52px 0;
+    padding: 44px 0;
   }
 
-  .part {
-    padding: 40px 0;
+  .block-head {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .feature-project {
+    margin-bottom: 40px;
+  }
+
+  .frame img,
+  .project-row .frame img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .feature-project .text {
+    gap: 10px;
+    padding-top: 20px;
+  }
+
+  .project-row {
+    gap: 16px;
+    padding: 28px 0;
+  }
+
+  .skills {
+    gap: 28px;
+  }
+
+  .job {
+    gap: 10px;
+    padding: 22px 0;
+  }
+
+  .contact {
+    padding: 24px 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 0 var(--ink);
+  }
+
+  .contact .links a {
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  .contact .mail {
+    padding: 8px 0;
+  }
+
+  .foot {
+    padding: 32px 0 40px;
+  }
+
+  .foot .wrap {
+    flex-direction: column;
+  }
+
+  .foot a {
+    display: inline-block;
+    padding: 8px 0;
+  }
+
+  /* case studies */
+  .case-head {
+    padding-top: 4px;
+  }
+
+  .crumb {
+    padding: 10px 0;
+    margin-bottom: 8px;
+  }
+
+  .case-head h1 {
+    font-size: clamp(2.1rem, 9.5vw, 3rem);
+    max-width: none;
+    margin-bottom: 14px;
+  }
+
+  .case-head .lead-in {
+    font-size: 1.125rem;
+    margin-bottom: 22px;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    padding: 16px 0;
+    margin-bottom: 22px;
+  }
+
+  .facts div {
+    min-width: 0;
+  }
+
+  .facts div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .case-head .actions {
+    flex-direction: column;
+  }
+
+  .case-head .actions .btn {
+    flex: none;
+  }
+
+  .case-image {
+    margin-bottom: 8px;
+  }
+
+  .case-image .frame img {
+    max-height: 320px;
+  }
+
+  /* the section list becomes a sticky strip that scrolls sideways and follows you down the page */
+  .case-layout {
+    display: block;
   }
 
   .toc {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 -18px;
+    padding: 0 18px;
+    background: var(--page);
+    border-bottom: 2px solid var(--ink);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .toc::-webkit-scrollbar {
     display: none;
+  }
+
+  .toc-title {
+    display: none;
+  }
+
+  .toc a {
+    flex: none;
+    padding: 0 14px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    border-left: 0;
+    border-bottom: 5px solid transparent;
+    margin-bottom: -2px;
+  }
+
+  .toc a:first-of-type {
+    padding-left: 0;
+  }
+
+  .toc a:hover {
+    border-left-color: transparent;
+  }
+
+  .toc a[aria-current] {
+    border-bottom-color: var(--cat);
+  }
+
+  .part {
+    padding: 36px 0;
+    scroll-margin-top: 56px;
+  }
+
+  .part:first-child {
+    border-top: 0;
+  }
+
+  .part-body .lead {
+    font-size: 1.3rem;
   }
 
   .feature-grid,
@@ -984,7 +1238,51 @@ a:hover .read {
     grid-template-columns: 1fr;
   }
 
-  .case-head h1 {
-    max-width: none;
+  .feature-grid {
+    gap: 14px;
+  }
+
+  .impact {
+    gap: 20px;
+  }
+
+  .highlight p {
+    font-size: 1.2rem;
+  }
+
+  .more {
+    padding-top: 48px;
+  }
+
+  .more a {
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .toc {
+    margin: 0 -14px;
+    padding: 0 14px;
+  }
+
+  .tiles {
+    gap: 10px;
+  }
+
+  .tile {
+    padding: 12px;
+    font-size: 1.05rem;
+  }
+
+  .tile small {
+    font-size: .8125rem;
+  }
+
+  .top nav {
+    font-size: .875rem;
   }
 }
