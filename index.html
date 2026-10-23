@@ -1,879 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Irhamshah Kamarudin is a full-stack, React Native and data engineer building production-ready digital products.">
-    <title>Irhamshah Kamarudin — Developer & Product Builder</title>
-    <link rel="icon" type="image/png" href="images/icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg: #09090b;
-            --surface: #111114;
-            --surface2: #17171b;
-            --text: #f5f5f5;
-            --muted: #a1a1aa;
-            --line: #27272a;
-            --accent: #7c3aed;
-            --accent2: #22d3ee;
-            --max: 1180px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            font-family: Inter, system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none
-        }
-
-        .container {
-            width: min(var(--max), calc(100% - 40px));
-            margin: auto
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(9, 9, 11, .78);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, .06)
-        }
-
-        .nav {
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between
-        }
-
-        .logo {
-            font-weight: 800;
-            letter-spacing: -.04em
-        }
-
-        .logo span {
-            color: #a78bfa
-        }
-
-        .navlinks {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-            font-size: 14px;
-            color: var(--muted)
-        }
-
-        .navlinks a:hover {
-            color: var(--text)
-        }
-
-        .nav-cta {
-            padding: 9px 14px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: var(--text)
-        }
-
-        .hero {
-            min-height: calc(100vh - 72px);
-            display: flex;
-            align-items: center;
-            padding: 80px 0 100px;
-            position: relative;
-            overflow: hidden
-        }
-
-        .hero:before {
-            content: "";
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            right: -260px;
-            top: -220px;
-            background: radial-gradient(circle, rgba(124, 58, 237, .22), transparent 65%);
-            pointer-events: none
-        }
-
-        .hero:after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: linear-gradient(to bottom, black, transparent 85%);
-            pointer-events: none
-        }
-
-        .hero-inner {
-            position: relative;
-            z-index: 1;
-            max-width: 940px
-        }
-
-        .eyebrow {
-            font: 500 12px "DM Mono", monospace;
-            color: #a78bfa;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            margin-bottom: 22px
-        }
-
-        h1 {
-            font-size: clamp(3.4rem, 8vw, 7.6rem);
-            line-height: .92;
-            letter-spacing: -.075em;
-            max-width: 1050px
-        }
-
-        .gradient {
-            background: linear-gradient(100deg, #fff 15%, #c4b5fd 52%, #67e8f9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent
-        }
-
-        .hero-copy {
-            max-width: 700px;
-            margin: 30px 0 34px;
-            color: var(--muted);
-            font-size: clamp(1.05rem, 2vw, 1.25rem)
-        }
-
-        .actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 13px 18px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            border: 1px solid var(--line);
-            transition: .2s
-        }
-
-        .btn-primary {
-            background: #fff;
-            color: #09090b;
-            border-color: #fff
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px)
-        }
-
-        .btn-ghost:hover {
-            background: var(--surface2);
-            border-color: #3f3f46
-        }
-
-        .availability {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 26px;
-            color: var(--muted);
-            font-size: 13px
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 14px #22c55e
-        }
-
-        section {
-            padding: 100px 0
-        }
-
-        .section-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 30px;
-            margin-bottom: 34px
-        }
-
-        .kicker {
-            font: 500 12px "DM Mono", monospace;
-            color: #71717a;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            margin-bottom: 9px
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3.3rem);
-            letter-spacing: -.055em;
-            line-height: 1
-        }
-
-        .section-note {
-            max-width: 430px;
-            color: var(--muted);
-            font-size: 14px
-        }
-
-        .featured {
-            display: grid;
-            grid-template-columns: 1.15fr .85fr;
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #141419, #0d0d10);
-            min-height: 440px
-        }
-
-        .featured-media {
-            min-height: 440px;
-            position: relative;
-            background: #0e0e12;
-            overflow: hidden
-        }
-
-        .featured-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: .88
-        }
-
-        .featured-media:after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 45%, #0d0d10 100%)
-        }
-
-        .featured-content {
-            padding: 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center
-        }
-
-        .pill {
-            display: inline-flex;
-            width: max-content;
-            padding: 6px 9px;
-            border: 1px solid #3f3f46;
-            border-radius: 999px;
-            color: #c4b5fd;
-            font: 500 11px "DM Mono", monospace;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            margin-bottom: 18px
-        }
-
-        .featured h3 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            letter-spacing: -.06em;
-            line-height: 1.02;
-            margin-bottom: 16px
-        }
-
-        .featured p {
-            color: var(--muted);
-            font-size: 15px;
-            margin-bottom: 22px
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 8px 0 28px
-        }
-
-        .metric {
-            padding: 13px;
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, .025)
-        }
-
-        .metric strong {
-            display: block;
-            font-size: 18px
-        }
-
-        .metric span {
-            display: block;
-            color: #71717a;
-            font-size: 11px;
-            margin-top: 3px
-        }
-
-        .arrow {
-            font-size: 18px
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px
-        }
-
-        .card {
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            background: var(--surface);
-            overflow: hidden;
-            transition: .25s
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #52525b
-        }
-
-        .card-img {
-            height: 250px;
-            background: #15151a;
-            overflow: hidden
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: .4s
-        }
-
-        .card:hover .card-img img {
-            transform: scale(1.03)
-        }
-
-        .card-body {
-            padding: 24px
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 10px;
-            color: #71717a;
-            font: 500 11px "DM Mono", monospace;
-            text-transform: uppercase
-        }
-
-        .card h3 {
-            font-size: 24px;
-            letter-spacing: -.04em;
-            margin-bottom: 9px
-        }
-
-        .card p {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 18px
-        }
-
-        .tags {
-            display: flex;
-            gap: 7px;
-            flex-wrap: wrap
-        }
-
-        .tag {
-            padding: 5px 8px;
-            border-radius: 7px;
-            background: #1c1c21;
-            border: 1px solid #29292f;
-            color: #a1a1aa;
-            font: 400 11px "DM Mono", monospace
-        }
-
-        .wide {
-            grid-column: 1/-1;
-            display: grid;
-            grid-template-columns: .9fr 1.1fr
-        }
-
-        .wide .card-img {
-            height: 100%;
-            min-height: 300px
-        }
-
-        .stack {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px
-        }
-
-        .stack-card {
-            padding: 22px;
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            background: var(--surface)
-        }
-
-        .stack-card h3 {
-            font-size: 16px;
-            margin-bottom: 9px
-        }
-
-        .stack-card p {
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        .experience {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            padding: 26px 0;
-            border-top: 1px solid var(--line)
-        }
-
-        .experience:last-child {
-            border-bottom: 1px solid var(--line)
-        }
-
-        .role {
-            font-weight: 700
-        }
-
-        .company {
-            color: #a78bfa;
-            font-size: 13px;
-            margin-top: 4px
-        }
-
-        .date {
-            font: 400 11px "DM Mono", monospace;
-            color: #71717a;
-            margin-top: 8px
-        }
-
-        .experience ul {
-            padding-left: 18px;
-            color: var(--muted);
-            font-size: 14px
-        }
-
-        .experience li {
-            margin-bottom: 7px
-        }
-
-        .about {
-            display: grid;
-            grid-template-columns: .8fr 1.2fr;
-            gap: 70px
-        }
-
-        .about-lead {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            letter-spacing: -.04em;
-            line-height: 1.15
-        }
-
-        .about-copy {
-            color: var(--muted);
-            font-size: 15px
-        }
-
-        .about-copy p {
-            margin-bottom: 18px
-        }
-
-        .contact {
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            padding: 55px;
-            background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, .16), transparent 35%), var(--surface)
-        }
-
-        .contact h2 {
-            max-width: 650px
-        }
-
-        .contact p {
-            color: var(--muted);
-            margin: 18px 0 26px;
-            max-width: 600px
-        }
-
-        footer {
-            padding: 35px 0;
-            color: #52525b;
-            border-top: 1px solid var(--line);
-            font: 400 11px "DM Mono", monospace
-        }
-
-        @media(max-width:800px) {
-            .navlinks {
-                display: none
-            }
-
-            .hero {
-                padding: 70px 0
-            }
-
-            .featured,
-            .wide,
-            .about {
-                grid-template-columns: 1fr
-            }
-
-            .featured-media {
-                min-height: 280px
-            }
-
-            .featured-content {
-                padding: 30px
-            }
-
-            .projects {
-                grid-template-columns: 1fr
-            }
-
-            .stack {
-                grid-template-columns: 1fr
-            }
-
-            .experience {
-                grid-template-columns: 1fr;
-                gap: 12px
-            }
-
-            .section-head {
-                display: block
-            }
-
-            .section-note {
-                margin-top: 15px
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Irhamshah Kamarudin is a full-stack, React Native and data engineer building production-ready digital products.">
+<title>Irhamshah Kamarudin, developer</title>
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <nav>
-        <div class="container nav"><a class="logo" href="#">Irham<span>.</span></a>
-            <div class="navlinks"><a href="#work">Work</a><a href="#experience">Experience</a><a
-                    href="#about">About</a><a href="#contact">Contact</a><a class="nav-cta" href="projects.html">All
-                    projects
-                    ↗</a></div>
-        </div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="index.html">Irhamshah Kamarudin</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="projects.html">All projects</a>
     </nav>
+  </div>
+</header>
 
-    <header class="hero">
-        <div class="container hero-inner">
-            <div class="eyebrow">Full-stack developer · Mobile · Data</div>
-            <h1>I build <span class="gradient">real products</span>, not
-                just demos.</h1>
-            <p class="hero-copy">I'm Irham, a developer focused on React
-                Native, Expo, JavaScript and cloud systems. I turn ideas
-                into production-ready mobile and web products, backed by
-                scalable APIs and data infrastructure.</p>
-            <div class="actions"><a class="btn btn-primary" href="#work">See
-                    my work <span>↓</span></a><a class="btn btn-ghost" href="mailto:irhamshah321@gmail.com">Let's work
-                    together
-                    ↗</a></div>
-            <div class="availability"><span class="dot"></span> Available
-                for freelance & product work</div>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>I build mobile apps, data pipelines and websites for people who have to use them.</h1>
+        <p class="intro">I'm Irham, a developer in Singapore working with React Native, Expo, JavaScript and AWS. Right now I'm building AAC Messenger with my brother at Assistive Technologies.</p>
+        <div class="actions">
+          <a class="btn solid" href="#work">See my work</a>
+          <a class="btn" href="mailto:irhamshah321@gmail.com">Email me</a>
         </div>
-    </header>
+        <p class="avail">Available for freelance and product work.</p>
+      </div>
 
-    <main>
-        <section id="work">
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <div class="kicker">01 /
-                            Selected work</div>
-                        <h2>Built, shipped,
-                            used.</h2>
-                    </div>
-                    <p class="section-note">A mix of
-                        product engineering, mobile development and data
-                        systems. Each project solves a real problem for real
-                        users.</p>
-                </div>
+      <div class="board" id="board">
+        <div class="bar">
+          <p id="sentence" aria-live="polite">I build mobile apps, web apps, data pipelines and cloud systems.</p>
+          <button class="sound" id="sound" type="button" aria-pressed="true" hidden>Sound on</button>
+        </div>
+        <div class="tiles">
+          <button class="tile t-sky" type="button" aria-pressed="false" data-say="mobile apps">Mobile apps<small>React Native, Expo</small></button>
+          <button class="tile t-leaf" type="button" aria-pressed="false" data-say="web apps">Web apps<small>React, Node.js</small></button>
+          <button class="tile t-tangerine" type="button" aria-pressed="false" data-say="data pipelines">Data pipelines<small>Python, AWS Glue, SQL</small></button>
+          <button class="tile t-blossom" type="button" aria-pressed="false" data-say="cloud systems">Cloud systems<small>Lambda, DynamoDB, S3</small></button>
+        </div>
+        <p class="board-hint">This is how AAC Messenger works: tap a card, hear it spoken.</p>
+      </div>
+    </div>
+  </section>
 
-                <a class="featured" href="project-assistive-tech.html">
-                    <div class="featured-media"><img src="images/banner-aacmessenger.png" alt="AAC Messenger"></div>
-                    <div class="featured-content"><span class="pill">Featured · Product</span>
-                        <h3>AAC
-                            Messenger</h3>
-                        <p>A cross-platform AAC
-                            communication app built with React Native and
-                            Expo, designed around the needs of non-speaking
-                            children, parents and educators.</p>
-                        <div class="metrics">
-                            <div class="metric"><strong>iOS</strong><span>App
-                                    Store</span></div>
-                            <div class="metric"><strong>Android</strong><span>Play
-                                    Store</span></div>
-                            <div class="metric"><strong>Real-time</strong><span>Messaging</span></div>
-                        </div>
-                        <span class="btn btn-ghost">Read the case study
-                            <span class="arrow">→</span></span>
-                    </div>
-                </a>
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Work I've shipped</h2>
+        <p>Mobile product work, enterprise data systems and a couple of websites. Each one solved a real problem for the people using it.</p>
+      </div>
 
-                <div class="projects" style="margin-top:18px">
-                    <a class="card" href="project-data-engineering.html">
-                        <div class="card-img"><img src="images/data-diagram.png"
-                                alt="AWS data engineering architecture"></div>
-                        <div class="card-body">
-                            <div class="card-meta"><span>Enterprise ·
-                                    Data</span><span>Case study
-                                    →</span></div>
-                            <h3>Data Pipeline
-                                Automation</h3>
-                            <p>Metadata-driven ETL
-                                automation for a multi-million-dollar
-                                government data platform. Reduced deployment
-                                work from 2–3 days to under an hour.</p>
-                            <div class="tags"><span class="tag">Python</span><span class="tag">AWS Glue</span><span
-                                    class="tag">Redshift</span><span class="tag">ETL</span></div>
-                        </div>
-                    </a>
-                    <a class="card" href="project-national-gallery.html">
-                        <div class="card-img"><img src="images/smsy_website_gif.gif"
-                                alt="National Gallery Singapore exhibition microsite"></div>
-                        <div class="card-body">
-                            <div class="card-meta"><span>Creative ·
-                                    Web</span><span>Case study
-                                    →</span></div>
-                            <h3>See Me See
-                                You</h3>
-                            <p>An interactive digital companion
-                                for National Gallery Singapore, combining
-                                visual storytelling, an artwork timeline and
-                                Three.js experiences.</p>
-                            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Three.js</span><span
-                                    class="tag">UX</span></div>
-                        </div>
-                    </a>
-                    <a class="card wide" href="project-rte-technologies.html">
-                        <div class="card-img"><img src="images/rte-banner.png" alt="RTE Technologies website"></div>
-                        <div class="card-body">
-                            <div class="card-meta"><span>Startup ·
-                                    Web</span><span>Case study
-                                    →</span></div>
-                            <h3>RTE
-                                Technologies</h3>
-                            <p>Designed and built a
-                                lightweight, responsive website for a
-                                Singapore green-tech startup, balancing
-                                credibility, speed and a tight launch
-                                timeline.</p>
-                            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
-                                    class="tag">JavaScript</span><span class="tag">Responsive</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+      <a class="feature-project cat-sky" href="project-assistive-tech.html">
+        <div class="frame"><img src="images/banner-aacmessenger.png" alt="AAC Messenger app screens"></div>
+        <div class="text">
+          <div>
+            <p class="kind">Mobile app</p>
+            <h3>AAC Messenger</h3>
+          </div>
+          <div>
+            <p>A cross-platform communication app built with React Native and Expo for non-speaking children, their parents and their educators. Live on iOS and Android, with real-time messaging between users and caregivers.</p>
+            <p><span class="read">Read the case study</span></p>
+          </div>
+        </div>
+      </a>
 
-        <section>
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <div class="kicker">02 / What I do</div>
-                        <h2>From idea
-                            to shipped product.</h2>
-                    </div>
-                    <p class="section-note">I work across the product
-                        stack, which means fewer handoffs and a clearer path
-                        from prototype to production.</p>
-                </div>
-                <div class="stack">
-                    <div class="stack-card">
-                        <h3>01 · Mobile
-                            products</h3>
-                        <p>React Native + Expo apps for iOS
-                            and Android, including navigation,
-                            authentication, APIs, notifications and
-                            production builds.</p>
-                    </div>
-                    <div class="stack-card">
-                        <h3>02 · Full-stack
-                            web</h3>
-                        <p>Responsive web applications and
-                            dashboards with React, JavaScript, Node.js, REST
-                            APIs and cloud services.</p>
-                    </div>
-                    <div class="stack-card">
-                        <h3>03 · Data
-                            engineering</h3>
-                        <p>Python ETL, AWS Glue,
-                            Redshift, SQL and metadata-driven pipelines for
-                            reliable, scalable data workflows.</p>
-                    </div>
-                    <div class="stack-card">
-                        <h3>04 · Cloud
-                            systems</h3>
-                        <p>AWS architecture across API
-                            Gateway, Lambda, DynamoDB, S3, Step Functions
-                            and deployment automation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <a class="project-row cat-tangerine" href="project-data-engineering.html">
+        <div class="frame"><img src="images/data-diagram.png" alt="AWS data engineering architecture diagram"></div>
+        <div class="text">
+          <p class="kind">Data pipelines</p>
+          <h3>Data Pipeline Automation</h3>
+          <p>Metadata-driven ETL automation for a multi-million-dollar government data platform. It cut deployment work from 2–3 days to under an hour.</p>
+          <p class="stack-line">Python, AWS Glue, Redshift, ETL</p>
+          <p><span class="read">Read the case study</span></p>
+        </div>
+      </a>
 
-        <section id="experience">
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <div class="kicker">03 /
-                            Experience</div>
-                        <h2>Engineering with
-                            ownership.</h2>
-                    </div>
-                    <p class="section-note">I've worked across startup
-                        product development and enterprise data
-                        engineering.</p>
-                </div>
-                <div class="experience">
-                    <div>
-                        <div class="role">Co-Founder &
-                            Software Engineer</div>
-                        <div class="company">Assistive Technologies</div>
-                        <div class="date">2024 —
-                            Present</div>
-                    </div>
-                    <ul>
-                        <li>Main developer for
-                            AAC Messenger, taking the product from concept
-                            through mobile deployment and ongoing
-                            iteration.</li>
-                        <li>Built React Native/Expo
-                            client features and AWS-backed APIs for
-                            real-time communication.</li>
-                        <li>Work directly
-                            with parents and educators to turn product
-                            feedback into usable features.</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <div>
-                        <div class="role">Data
-                            Engineer</div>
-                        <div class="company">Accenture
-                            Singapore</div>
-                        <div class="date">2024 —
-                            2025</div>
-                    </div>
-                    <ul>
-                        <li>Main developer across
-                            all three waves of a multi-million-dollar
-                            government data analytics
-                            platform.</li>
-                        <li>Built Python/AWS Glue ETL
-                            automation, Redshift schema generation and
-                            metadata-driven deployment
-                            workflows.</li>
-                        <li>Led delivery of two waves as
-                            the sole developer after the previous full-time
-                            developer transitioned off the
-                            project.</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <div>
-                        <div class="role">Web
-                            Developer</div>
-                        <div class="company">National
-                            Gallery Singapore · Do Not Design</div>
-                        <div class="date">2023</div>
-                    </div>
-                    <ul>
-                        <li>Built the
-                            front-end experience for the “See Me See You”
-                            exhibition microsite using JavaScript, HTML, CSS
-                            and Three.js.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+      <a class="project-row cat-leaf" href="project-national-gallery.html">
+        <div class="frame"><img src="images/smsy_website_gif.gif" alt="National Gallery Singapore exhibition microsite"></div>
+        <div class="text">
+          <p class="kind">Interactive website</p>
+          <h3>See Me See You</h3>
+          <p>An interactive companion site for an exhibition at National Gallery Singapore, with an artwork timeline and Three.js visuals. Built with the agency Do Not Design.</p>
+          <p class="stack-line">JavaScript, Three.js, UX</p>
+          <p><span class="read">Read the case study</span></p>
+        </div>
+      </a>
 
-        <section id="about">
-            <div class="container about">
-                <div>
-                    <div class="kicker">04 / About</div>
-                    <div class="about-lead">I like building the parts of
-                        software that make the whole thing feel
-                        simple.</div>
-                </div>
-                <div class="about-copy">
-                    <p>My
-                        background sits between product engineering and data
-                        engineering. I enjoy taking an ambiguous problem,
-                        figuring out what actually matters, then building
-                        the simplest system that can ship and
-                        scale.</p>
-                    <p>Today, that means building accessible
-                        technology at Assistive Technologies while
-                        continuing to work on mobile, web and data
-                        projects.</p>
-                    <p><strong style="color:#fff">Core
-                            stack:</strong> React Native · Expo · React ·
-                        JavaScript · Node.js · Python · SQL ·
-                        AWS</p>
-                </div>
-            </div>
-        </section>
+      <a class="project-row cat-leaf" href="project-rte-technologies.html">
+        <div class="frame"><img src="images/rte-banner.png" alt="RTE Technologies website"></div>
+        <div class="text">
+          <p class="kind">Website</p>
+          <h3>RTE Technologies</h3>
+          <p>A lightweight, responsive website for a Singapore green-tech startup, designed and built to look credible and load fast before a tight launch.</p>
+          <p class="stack-line">HTML, CSS, JavaScript</p>
+          <p><span class="read">Read the case study</span></p>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <section id="contact">
-            <div class="container">
-                <div class="contact">
-                    <div class="kicker">05 /
-                        Contact</div>
-                    <h2>Have a product in
-                        mind?</h2>
-                    <p>Whether you need a mobile app,
-                        full-stack build or data workflow, I'm open to
-                        interesting problems and practical
-                        collaborations.</p>
-                    <div class="actions"><a class="btn btn-primary" href="mailto:irhamshah321@gmail.com">Email me
-                            ↗</a><a class="btn btn-ghost" target="_blank"
-                            href="https://www.linkedin.com/in/irhamshah-kamarudin-80ab85247/">LinkedIn
-                            ↗</a><a class="btn btn-ghost" target="_blank" href="https://github.com/Irhamshah">GitHub
-                            ↗</a></div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container">© 2026 Irhamshah Kamarudin · Designed &
-            built from scratch.</div>
-    </footer>
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>What I do</h2>
+        <p>I work across the product stack, so there are fewer handoffs between a prototype and something people can use.</p>
+      </div>
+      <div class="skills">
+        <div class="cat-sky"><h3>Mobile products</h3><p>React Native and Expo apps for iOS and Android, including navigation, authentication, APIs, notifications and production builds.</p></div>
+        <div class="cat-leaf"><h3>Full-stack web</h3><p>Responsive web applications and dashboards with React, JavaScript, Node.js, REST APIs and cloud services.</p></div>
+        <div class="cat-tangerine"><h3>Data engineering</h3><p>Python ETL, AWS Glue, Redshift, SQL and metadata-driven pipelines for reliable, scalable data workflows.</p></div>
+        <div class="cat-blossom"><h3>Cloud systems</h3><p>AWS architecture across API Gateway, Lambda, DynamoDB, S3, Step Functions and deployment automation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Experience</h2>
+        <p>Startup product development and enterprise data engineering.</p>
+      </div>
+
+      <div class="job">
+        <div>
+          <h3>Co-Founder and Software Engineer</h3>
+          <p class="where">Assistive Technologies</p>
+          <p class="when">2024 to now</p>
+        </div>
+        <ul>
+          <li>Main developer for AAC Messenger, taking the product from concept through mobile deployment and ongoing iteration.</li>
+          <li>Built React Native/Expo client features and AWS-backed APIs for real-time communication.</li>
+          <li>Work directly with parents and educators to turn feedback into usable features.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div>
+          <h3>Data Engineer</h3>
+          <p class="where">Accenture Singapore</p>
+          <p class="when">2024 to 2025</p>
+        </div>
+        <ul>
+          <li>Main developer across all three waves of a multi-million-dollar government data analytics platform.</li>
+          <li>Built Python and AWS Glue ETL automation, Redshift schema generation and metadata-driven deployment workflows.</li>
+          <li>Led delivery of two waves as the sole developer after the previous full-time developer moved off the project.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div>
+          <h3>Web Developer</h3>
+          <p class="where">National Gallery Singapore, with Do Not Design</p>
+          <p class="when">2023</p>
+        </div>
+        <ul>
+          <li>Built the front end of the “See Me See You” exhibition microsite using JavaScript, HTML, CSS and Three.js.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about">
+      <p class="lead">I like building the parts of software that make the whole thing feel simple.</p>
+      <div>
+        <p>My background sits between product engineering and data engineering. I like taking an ambiguous problem, working out what actually matters, then building the simplest system that can ship and scale.</p>
+        <p>Today that means building accessible technology at Assistive Technologies while continuing to take on mobile, web and data projects.</p>
+        <p><strong>Core stack:</strong> React Native, Expo, React, JavaScript, Node.js, Python, SQL and AWS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Have a product in mind?</h2>
+        <p>Whether you need a mobile app, a full-stack build or a data workflow, I'm open to interesting problems and practical collaborations.</p>
+        <a class="mail" href="mailto:irhamshah321@gmail.com">irhamshah321@gmail.com</a>
+        <p class="links">
+          <a href="https://www.linkedin.com/in/irhamshah-kamarudin-80ab85247/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Irhamshah" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Irhamshah Kamarudin</span>
+    <span>Designed and built by hand.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sentence = document.getElementById('sentence');
+  var soundBtn = document.getElementById('sound');
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+  var original = sentence.textContent;
+  var canSpeak = 'speechSynthesis' in window;
+  var soundOn = true;
+
+  if (canSpeak) {
+    soundBtn.hidden = false;
+    soundBtn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      soundBtn.setAttribute('aria-pressed', String(soundOn));
+      soundBtn.textContent = soundOn ? 'Sound on' : 'Sound off';
+      if (!soundOn) window.speechSynthesis.cancel();
+    });
+  }
+
+  tiles.forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      var wasOn = tile.getAttribute('aria-pressed') === 'true';
+      tiles.forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
+      if (wasOn) { sentence.textContent = original; return; }
+      tile.setAttribute('aria-pressed', 'true');
+      var line = 'I build ' + tile.getAttribute('data-say') + '.';
+      sentence.textContent = line;
+      if (canSpeak && soundOn) {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(line));
+      }
+    });
+  });
+})();
+</script>
 </body>
-
 </html>

@@ -1,62 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AAC Messenger case study — a React Native and Expo communication app built by Irhamshah Kamarudin.">
-<title>AAC Messenger — Irhamshah Kamarudin</title>
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#09090b;--surface:#111114;--surface2:#17171b;--text:#f5f5f5;--muted:#a1a1aa;--line:#27272a;--accent:#7c3aed;--accent2:#22d3ee;--max:1080px}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}a{color:inherit;text-decoration:none}.container{width:min(var(--max),calc(100% - 40px));margin:auto}
-nav{position:sticky;top:0;z-index:20;background:rgba(9,9,11,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:800;letter-spacing:-.04em}.logo span{color:#a78bfa}.navlinks{display:flex;gap:28px;align-items:center;font-size:14px;color:var(--muted)}.navlinks a:hover{color:var(--text)}.nav-cta{padding:9px 14px;border:1px solid var(--line);border-radius:999px;color:var(--text)}
-.hero{padding:80px 0 50px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;width:650px;height:650px;right:-280px;top:-280px;background:radial-gradient(circle,rgba(124,58,237,.2),transparent 65%);pointer-events:none}.hero-inner{position:relative;z-index:1}.back{font:500 12px "DM Mono",monospace;color:#71717a;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;gap:8px;margin-bottom:34px}.back:hover{color:#fff}.eyebrow{font:500 12px "DM Mono",monospace;color:#a78bfa;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}.hero h1{font-size:clamp(3.3rem,8vw,6.5rem);line-height:.92;letter-spacing:-.075em;max-width:850px}.gradient{background:linear-gradient(100deg,#fff 15%,#c4b5fd 52%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}.hero-copy{max-width:720px;color:var(--muted);font-size:17px;margin:28px 0}.meta{display:flex;gap:28px;flex-wrap:wrap;margin:28px 0 24px}.meta-item{min-width:120px}.meta-label{display:block;color:#71717a;font:500 10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}.meta-value{font-size:14px;font-weight:600}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 17px;border-radius:10px;font-weight:600;font-size:13px;border:1px solid var(--line);transition:.2s}.btn-primary{background:#fff;color:#09090b;border-color:#fff}.btn-primary:hover{transform:translateY(-2px)}.btn-ghost:hover{background:var(--surface2);border-color:#3f3f46}
-.hero-image{margin:30px auto 80px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#0e0e12;box-shadow:0 30px 90px rgba(0,0,0,.35)}.hero-image img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover}
-.content{display:grid;grid-template-columns:190px 1fr;gap:65px;padding-bottom:100px}.toc{position:sticky;top:105px;height:max-content}.toc-label{font:500 10px "DM Mono",monospace;color:#71717a;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}.toc a{display:block;color:#71717a;font-size:13px;padding:7px 0}.toc a:hover{color:#fff}.section{padding:0 0 68px;border-bottom:1px solid var(--line);margin-bottom:68px}.section:last-child{border-bottom:0;margin-bottom:0}.section-kicker{font:500 11px "DM Mono",monospace;color:#a78bfa;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}.section h2{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;letter-spacing:-.055em;margin-bottom:22px}.section p,.section li{color:var(--muted);font-size:15px}.section p{margin-bottom:18px}.section ul,.section ol{padding-left:21px}.section li{margin-bottom:10px}.section strong{color:#f5f5f5}.highlight{margin:28px 0;padding:22px;border:1px solid #3f3f46;border-radius:14px;background:linear-gradient(135deg,rgba(124,58,237,.11),rgba(34,211,238,.04))}.highlight p{color:#e4e4e7;font-size:16px;margin:0}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}.feature{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.feature h3{font-size:15px;margin-bottom:7px}.feature p{font-size:13px;margin:0}.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tech{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.tech h3{font-size:14px;margin-bottom:10px}.tech ul{list-style:none;padding:0}.tech li{font-size:13px;padding:3px 0}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}.gallery-item{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#111114}.gallery-item img{display:block;width:100%;height:100%;object-fit:cover}.impact{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}.impact-card{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.impact-card strong{display:block;font-size:24px;letter-spacing:-.04em}.impact-card span{display:block;color:#71717a;font-size:12px;margin-top:4px}.next{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.next-card{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.next-card p{font-size:13px;margin:0}
-footer{padding:35px 0;color:#52525b;border-top:1px solid var(--line);font:400 11px "DM Mono",monospace}.mobile-menu-btn{display:none;background:none;border:0;color:#fff;font-size:24px}.mobile-menu{display:none}
-@media(max-width:800px){.navlinks{display:none}.mobile-menu-btn{display:block}.content{grid-template-columns:1fr;gap:0}.toc{display:none}.feature-grid,.tech-grid,.gallery,.impact,.next{grid-template-columns:1fr}.hero{padding-top:55px}.hero-image{margin-bottom:55px}.meta{gap:18px}.container{width:min(var(--max),calc(100% - 28px))}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AAC Messenger case study — a React Native and Expo communication app built by Irhamshah Kamarudin.">
+    <title>AAC Messenger, Irhamshah Kamarudin</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<nav><div class="container nav"><a class="logo" href="index.html">Irham<span>.</span></a><div class="navlinks"><a href="index.html#work">Work</a><a href="index.html#experience">Experience</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a class="nav-cta" href="projects.html">All projects ↗</a></div><button class="mobile-menu-btn" aria-label="Open menu">☰</button></div></nav>
 
-<header class="hero"><div class="container hero-inner">
-<a class="back" href="projects.html">← Back to projects</a>
-<div class="eyebrow">Featured project · Product · Mobile</div>
-<h1>AAC <span class="gradient">Messenger</span></h1>
-<p class="hero-copy">A cross-platform AAC communication app designed to make everyday communication more accessible for non-speaking children and the people who support them.</p>
-<div class="meta"><div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Co-Founder & Software Engineer</span></div><div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">iOS & Android</span></div><div class="meta-item"><span class="meta-label">Stack</span><span class="meta-value">React Native · Expo · AWS</span></div></div>
-<div class="actions"><a class="btn btn-primary" href="https://apps.apple.com/us/app/aac-messenger/id6747913083" target="_blank">View live app ↗</a><a class="btn btn-ghost" href="https://assistivetech.co" target="_blank">Visit Assistive Technologies ↗</a></div>
-</div></header>
+<body class="cat-sky">
 
-<main class="container">
-<div class="hero-image"><img src="images/banner-aacmessenger.png" alt="AAC Messenger app"></div>
-<div class="content">
-<aside class="toc"><div class="toc-label">On this page</div><a href="#overview">Overview</a><a href="#problem">The problem</a><a href="#solution">The solution</a><a href="#features">Key features</a><a href="#technical">Technical implementation</a><a href="#impact">Impact</a><a href="#learnings">Challenges & learnings</a><a href="#screenshots">Screenshots</a></aside>
-<div>
-<section class="section" id="overview"><div class="section-kicker">01 / Overview</div><h2>Building technology around how people actually communicate.</h2><p>AAC Messenger is a mobile application designed to enhance communication and accessibility for non-speaking special needs individuals. By bringing assistive communication tools and two-way communication into one platform, the app is designed to make everyday interactions simpler for users and their caregivers.</p><p>Developed alongside my brother as part of our startup journey, the product has been shaped through user feedback, iterative design and ongoing conversations with parents and educators.</p></section>
+    <header class="top">
+        <div class="wrap">
+            <a class="name" href="index.html">Irhamshah Kamarudin</a>
+            <nav aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="index.html#experience">Experience</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="projects.html">All projects</a>
+            </nav>
+        </div>
+    </header>
 
-<section class="section" id="problem"><div class="section-kicker">02 / The problem</div><h2>Accessibility tools should remove friction, not add it.</h2><p>Many existing accessibility apps can be difficult to learn, limited in customization, or expensive for families. Users often face:</p><ul><li>Steep learning curves that create barriers instead of removing them.</li><li>Limited customization that does not adapt to individual communication needs.</li><li>High costs that can make assistive technology inaccessible to families.</li></ul></section>
+    <main class="wrap">
+        <div class="case-head">
+            <a class="crumb" href="projects.html">Back to all projects</a>
+            <h1>AAC Messenger</h1>
+            <p class="lead-in">A cross-platform AAC communication app designed to make everyday communication more
+                accessible for non-speaking children and the people who support them.</p>
+            <dl class="facts">
+                <div>
+                    <dt>Role</dt>
+                    <dd>Co-Founder & Software Engineer</dd>
+                </div>
+                <div>
+                    <dt>Platform</dt>
+                    <dd>iOS & Android</dd>
+                </div>
+                <div>
+                    <dt>Stack</dt>
+                    <dd>React Native, Expo, AWS</dd>
+                </div>
+            </dl>
+            <div class="actions"><a class="btn solid" href="https://apps.apple.com/us/app/aac-messenger/id6747913083"
+                    target="_blank" rel="noopener">View live app</a><a class="btn" href="https://assistivetech.co"
+                    target="_blank" rel="noopener">Visit Assistive Technologies</a></div>
+        </div>
 
-<section class="section" id="solution"><div class="section-kicker">03 / The solution</div><h2>A simple communication layer built around flexibility.</h2><p>We designed an assistive communication experience that lets users quickly express themselves while giving caregivers and support networks a way to stay connected.</p><div class="highlight"><p>“Our goal was simple: make every interaction feel natural and effortless, removing barriers instead of adding complexity.”</p></div></section>
+        <div class="case-image">
+            <div class="frame"><img src="images/banner-aacmessenger.png" alt="AAC Messenger app"></div>
+        </div>
 
-<section class="section" id="features"><div class="section-kicker">04 / Key features</div><h2>Designed for everyday communication.</h2><div class="feature-grid"><div class="feature"><h3>Grid-based communication</h3><p>A clean, customizable grid of cards that users can tap to speak words or phrases aloud.</p></div><div class="feature"><h3>Folder navigation</h3><p>Cards can function as folders for categories such as Food, Emotions and Actions.</p></div><div class="feature"><h3>Text-to-speech</h3><p>Cards can instantly speak their content, enabling quick and natural communication.</p></div><div class="feature"><h3>Personalized vocabulary</h3><p>Users can use admin-created cards or tailor vocabulary around their own needs.</p></div><div class="feature"><h3>Real-time messaging</h3><p>Built-in chat lets users and caregivers communicate seamlessly within the app.</p></div><div class="feature"><h3>Accessible interaction</h3><p>Large touch targets, clear visual hierarchy and a minimal interface support accessibility-focused use.</p></div></div></section>
+        <div class="case-layout">
+            <aside class="toc" aria-label="On this page">
+                <p class="toc-title">On this page</p>
+                <a href="#overview">Overview</a>
+                <a href="#problem">The problem</a>
+                <a href="#solution">The solution</a>
+                <a href="#features">Key features</a>
+                <a href="#technical">Technical implementation</a>
+                <a href="#impact">Impact</a>
+                <a href="#learnings">Challenges &amp; learnings</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="#next-steps">Next steps</a>
+            </aside>
+            <div class="parts">
+                <section class="part" id="overview">
+                    <h2>Overview</h2>
+                    <div class="part-body">
+                        <p class="lead">Building technology around how people actually communicate.</p>
+                        <p>AAC Messenger is a mobile application designed to enhance communication and accessibility for
+                            non-speaking special needs individuals. By bringing assistive communication tools and
+                            two-way communication into one platform, the app is designed to make everyday interactions
+                            simpler for users and their caregivers.</p>
+                        <p>Developed alongside my brother as part of our startup journey, the product has been shaped
+                            through user feedback, iterative design and ongoing conversations with parents and
+                            educators.</p>
+                    </div>
+                </section>
 
-<section class="section" id="technical"><div class="section-kicker">05 / Technical implementation</div><h2>From mobile UI to cloud infrastructure.</h2><p>Built with React Native and Expo for cross-platform delivery, AAC Messenger uses a lightweight AWS-backed architecture to support authentication, APIs and real-time communication.</p><div class="tech-grid"><div class="tech"><h3>Frontend</h3><ul><li>React Native</li><li>Expo</li><li>JavaScript</li><li>React Navigation</li></ul></div><div class="tech"><h3>Backend</h3><ul><li>Firebase Authentication</li><li>AWS API Gateway</li><li>AWS Lambda</li><li>AWS DynamoDB</li></ul></div><div class="tech"><h3>Device & APIs</h3><ul><li>WebSockets</li><li>Expo Speech</li><li>AsyncStorage</li><li>iOS & Android</li></ul></div></div></section>
+                <section class="part" id="problem">
+                    <h2>The problem</h2>
+                    <div class="part-body">
+                        <p class="lead">Accessibility tools should remove friction, not add it.</p>
+                        <p>Many existing accessibility apps can be difficult to learn, limited in customization, or
+                            expensive for families. Users often face:</p>
+                        <ul>
+                            <li>Steep learning curves that create barriers instead of removing them.</li>
+                            <li>Limited customization that does not adapt to individual communication needs.</li>
+                            <li>High costs that can make assistive technology inaccessible to families.</li>
+                        </ul>
+                    </div>
+                </section>
 
-<section class="section" id="impact"><div class="section-kicker">06 / Impact</div><h2>More than a technical project.</h2><div class="impact"><div class="impact-card"><strong>50+</strong><span>Active beta users</span></div><div class="impact-card"><strong>iOS + Android</strong><span>Cross-platform deployment</span></div><div class="impact-card"><strong>Grant funded</strong><span>Company supported through a Government Social Enterprise Grant</span></div></div></section>
+                <section class="part" id="solution">
+                    <h2>The solution</h2>
+                    <div class="part-body">
+                        <p class="lead">A simple communication layer built around flexibility.</p>
+                        <p>We designed an assistive communication experience that lets users quickly express themselves
+                            while giving caregivers and support networks a way to stay connected.</p>
+                        <div class="highlight">
+                            <p>“Our goal was simple: make every interaction feel natural and effortless, removing
+                                barriers instead of adding complexity.”</p>
+                        </div>
+                    </div>
+                </section>
 
-<section class="section" id="learnings"><div class="section-kicker">07 / Challenges & learnings</div><h2>Accessibility changed how I think about UI.</h2><p><strong>Challenge:</strong> The interface needed to be simple enough for non-speaking users while remaining flexible enough to support folders, categories and real-time communication. Traditional mobile UI patterns did not always work well for users with autism or limited motor control.</p><p><strong>Solution:</strong> I redesigned the grid multiple times, adjusting card sizes, spacing, colors and navigation flow based on how my younger brother interacted with it. I simplified touch interactions, strengthened visual hierarchy and refined the folder system to reduce cognitive load.</p><p><strong>Learning:</strong> Accessibility is not about adding features. It is about removing friction. Every iteration reinforced how much thoughtful UI decisions can affect someone who relies on the product every day.</p></section>
+                <section class="part" id="features">
+                    <h2>Key features</h2>
+                    <div class="part-body">
+                        <p class="lead">Designed for everyday communication.</p>
+                        <div class="feature-grid">
+                            <div class="feature">
+                                <h3>Grid-based communication</h3>
+                                <p>A clean, customizable grid of cards that users can tap to speak words or phrases
+                                    aloud.</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Folder navigation</h3>
+                                <p>Cards can function as folders for categories such as Food, Emotions and Actions.</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Text-to-speech</h3>
+                                <p>Cards can instantly speak their content, enabling quick and natural communication.
+                                </p>
+                            </div>
+                            <div class="feature">
+                                <h3>Personalized vocabulary</h3>
+                                <p>Users can use admin-created cards or tailor vocabulary around their own needs.</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Real-time messaging</h3>
+                                <p>Built-in chat lets users and caregivers communicate seamlessly within the app.</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Accessible interaction</h3>
+                                <p>Large touch targets, clear visual hierarchy and a minimal interface support
+                                    accessibility-focused use.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-<section class="section" id="screenshots"><div class="section-kicker">08 / Screenshots</div><h2>The product in use.</h2><div class="gallery"><div class="gallery-item"><img src="images/child_ui.jpg" alt="AAC Messenger child interface"></div><div class="gallery-item"><img src="images/parent_ui_1.jpg" alt="AAC Messenger parent interface"></div><div class="gallery-item"><img src="images/parent_ui_2.jpg" alt="AAC Messenger parent interface"></div></div></section>
+                <section class="part" id="technical">
+                    <h2>Technical implementation</h2>
+                    <div class="part-body">
+                        <p class="lead">From mobile UI to cloud infrastructure.</p>
+                        <p>Built with React Native and Expo for cross-platform delivery, AAC Messenger uses a
+                            lightweight AWS-backed architecture to support authentication, APIs and real-time
+                            communication.</p>
+                        <div class="tech-grid">
+                            <div class="tech">
+                                <h3>Frontend</h3>
+                                <ul>
+                                    <li>React Native</li>
+                                    <li>Expo</li>
+                                    <li>JavaScript</li>
+                                    <li>React Navigation</li>
+                                </ul>
+                            </div>
+                            <div class="tech">
+                                <h3>Backend</h3>
+                                <ul>
+                                    <li>Firebase Authentication</li>
+                                    <li>AWS API Gateway</li>
+                                    <li>AWS Lambda</li>
+                                    <li>AWS DynamoDB</li>
+                                </ul>
+                            </div>
+                            <div class="tech">
+                                <h3>Device & APIs</h3>
+                                <ul>
+                                    <li>WebSockets</li>
+                                    <li>Expo Speech</li>
+                                    <li>AsyncStorage</li>
+                                    <li>iOS & Android</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-<section class="section"><div class="section-kicker">09 / Next steps</div><h2>Still evolving with the people who use it.</h2><div class="next"><div class="next-card"><p>Integration with smart home devices</p></div><div class="next-card"><p>Enhanced AI capabilities for context-aware assistance</p></div><div class="next-card"><p>Caregiver dashboard for family members and support networks</p></div><div class="next-card"><p>Community features for users to share tips and support</p></div></div></section>
-</div></div>
-</main>
-<footer><div class="container">© 2026 Irhamshah Kamarudin · Designed & built from scratch.</div></footer>
-<script src="script.js"></script>
+                <section class="part" id="impact">
+                    <h2>Impact</h2>
+                    <div class="part-body">
+                        <p class="lead">More than a technical project.</p>
+                        <div class="impact">
+                            <div class="impact-card"><strong>50+</strong><span>Active beta users</span></div>
+                            <div class="impact-card"><strong>iOS + Android</strong><span>Cross-platform
+                                    deployment</span></div>
+                            <div class="impact-card"><strong>Grant funded</strong><span>Company supported through a
+                                    Government Social Enterprise Grant</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="part" id="learnings">
+                    <h2>Challenges & learnings</h2>
+                    <div class="part-body">
+                        <p class="lead">Accessibility changed how I think about UI.</p>
+                        <p><strong>Challenge:</strong> The interface needed to be simple enough for non-speaking users
+                            while remaining flexible enough to support folders, categories and real-time communication.
+                            Traditional mobile UI patterns did not always work well for users with autism or limited
+                            motor control.</p>
+                        <p><strong>Solution:</strong> I redesigned the grid multiple times, adjusting card sizes,
+                            spacing, colors and navigation flow based on how my younger brother interacted with it. I
+                            simplified touch interactions, strengthened visual hierarchy and refined the folder system
+                            to reduce cognitive load.</p>
+                        <p><strong>Learning:</strong> Accessibility is not about adding features. It is about removing
+                            friction. Every iteration reinforced how much thoughtful UI decisions can affect someone who
+                            relies on the product every day.</p>
+                    </div>
+                </section>
+
+                <section class="part" id="screenshots">
+                    <h2>Screenshots</h2>
+                    <div class="part-body">
+                        <p class="lead">The product in use.</p>
+                        <div class="gallery">
+                            <div class="gallery-item"><img src="images/child_ui.jpg"
+                                    alt="AAC Messenger child interface"></div>
+                            <div class="gallery-item"><img src="images/parent_ui_1.jpg"
+                                    alt="AAC Messenger parent interface"></div>
+                            <div class="gallery-item"><img src="images/parent_ui_2.jpg"
+                                    alt="AAC Messenger parent interface"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="part" id="next-steps">
+                    <h2>Next steps</h2>
+                    <div class="part-body">
+                        <p class="lead">Still evolving with the people who use it.</p>
+                        <div class="next">
+                            <div class="next-card">
+                                <p>Integration with smart home devices</p>
+                            </div>
+                            <div class="next-card">
+                                <p>Enhanced AI capabilities for context-aware assistance</p>
+                            </div>
+                            <div class="next-card">
+                                <p>Caregiver dashboard for family members and support networks</p>
+                            </div>
+                            <div class="next-card">
+                                <p>Community features for users to share tips and support</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <nav class="more" aria-label="Next project">
+            <a class="cat-tangerine" href="project-data-engineering.html">
+                <small>Next project</small>
+                <strong>Data Pipeline Automation</strong>
+            </a>
+        </nav>
+    </main>
+
+    <footer class="foot">
+        <div class="wrap">
+            <span>© 2026 Irhamshah Kamarudin</span>
+            <a href="index.html#contact">Get in touch</a>
+        </div>
+    </footer>
+    <script>
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+            if (!links.length || !('IntersectionObserver' in window)) return;
+            var byId = {};
+            links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    links.forEach(function (a) { a.removeAttribute('aria-current'); });
+                    var a = byId[e.target.id];
+                    if (a) a.setAttribute('aria-current', 'true');
+                });
+            }, { rootMargin: '-15% 0px -75% 0px' });
+            document.querySelectorAll('.part').forEach(function (sec) { io.observe(sec); });
+            if (links[0]) links[0].setAttribute('aria-current', 'true');
+        })();
+    </script>
 </body>
+
 </html>
